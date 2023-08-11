@@ -1,11 +1,11 @@
 import '../LoginPage.css'
 function LoginPage(){
     return (<div>
-        <h4 className="lma">Loan Management Application</h4>
+        <center><h4 className="lma">Loan Management Application</h4></center>
       <div className="adminLogin">
-        <h4>Admin Login</h4>
+        <center><h4>Admin Login</h4></center>
         <div className="loginForm">
-          <form>
+         <center> <form style={{backgroundColor: "beige", borderRadius: "20px", padding: "30px", maxWidth: "450px"}}>
           <label>Enter Admin User ID:
         <input type="text" name='userID'/>
       </label>
@@ -13,7 +13,7 @@ function LoginPage(){
         <input type="password" name='userpass' />
       </label>
       <input type="submit" value="login" className="submitbtn"/>
-          </form>
+          </form></center>
         </div>
       </div>
       </div>);

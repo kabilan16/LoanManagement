@@ -1,0 +1,32 @@
+.adminLogin{
+    
+    padding: 20px;
+}
+.lma
+{
+    background-color:#0033cc;
+    color: white;
+    padding: 20px;
+}
+label 
+{
+    display: block;
+    margin: 35px;
+    font-weight: bold;
+}
+
+input
+{
+    margin-left: 20px;
+    
+    border: 2px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.submitbtn
+{
+    padding: 7px;
+    font-weight: bold;
+    border: 2px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

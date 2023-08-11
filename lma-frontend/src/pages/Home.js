@@ -1,9 +1,9 @@
 import '../LoginPage.css'
 function Home(){
     return (<div>
-        <h4 className="lma">Home page</h4>
+        
       <div className="adminLogin">
-        <h4>sample page</h4>
+        <center><h2 style={{backgroundColor: "#0033cc",color: "white",padding: "20px"}}>LOAN MANAGEMENT APPLICATION</h2></center>
         
       </div>
       </div>);

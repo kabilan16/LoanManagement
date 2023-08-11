@@ -8,6 +8,7 @@ import Loginpage from "./components/Loginpage";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import UserLogin from './components/UserLogin';
 
 export default function Index() {
   return (
@@ -15,7 +16,7 @@ export default function Index() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="userlogin" element={<Blogs />} />
+          <Route path="userlogin" element={<UserLogin />} />
           <Route path="adminlogin" element= {<Loginpage />} />
         </Route>
       </Routes>

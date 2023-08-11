@@ -1,6 +1,7 @@
 .adminLogin{
-    
+    align-content: center;
     padding: 20px;
+    
 }
 .lma
 {
@@ -14,7 +15,11 @@ label
     margin: 35px;
     font-weight: bold;
 }
-
+.navbar
+{
+    display: flex;
+    justify-content: space-around;
+}
 input
 {
     margin-left: 20px;

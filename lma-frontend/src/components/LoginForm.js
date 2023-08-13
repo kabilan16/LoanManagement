@@ -1,6 +1,6 @@
-import '../LoginPage.css'
 import React, { useState } from 'react';
-function LoginPage(){
+
+const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
@@ -34,20 +34,17 @@ function LoginPage(){
     }
   };
 
-    return (<div>
-        <center><h4 className="lma">Loan Management Application</h4></center>
-      <div className="adminLogin">
-        <center><h4>Admin Login</h4></center>
-        <div className="container mt-5">
+  return (
+    <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card shadow p-4" style={{ backgroundColor: '#f8f9fa' }}>
             <div className="card-body">
-              
+              <h2 className="card-title text-center mb-4">Login</h2>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="username" className="form-label">
-                    Admin Username
+                    Username
                   </label>
                   <input
                     type="text"
@@ -60,7 +57,7 @@ function LoginPage(){
                 </div>
                 <div className="mb-3">
                   <label htmlFor="password" className="form-label">
-                    Admin Password
+                    Password
                   </label>
                   <input
                     type="password"
@@ -82,8 +79,7 @@ function LoginPage(){
         </div>
       </div>
     </div>
-      </div>
-      </div>);
-}
+  );
+};
 
-export default  LoginPage;
+export default LoginForm;

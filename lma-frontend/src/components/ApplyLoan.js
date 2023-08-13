@@ -1,17 +1,13 @@
 import '../LoginPage.css'
 import React, { useState } from 'react';
-function LoginPage(){
+function ApplyLoan(){
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,10 +16,6 @@ function LoginPage(){
 
     if (username.trim() === '') {
       validationErrors.username = 'Username is required';
-    }
-
-    if (password.trim() === '') {
-      validationErrors.password = 'Password is required';
     }
 
     if (Object.keys(validationErrors).length > 0) {
@@ -37,7 +29,7 @@ function LoginPage(){
     return (<div>
         <center><h4 className="lma">Loan Management Application</h4></center>
       <div className="adminLogin">
-        <center><h4>Admin Login</h4></center>
+        <center><h4>Select Product and Apply for Loan</h4></center>
         <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
@@ -47,7 +39,7 @@ function LoginPage(){
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="username" className="form-label">
-                    Admin Username
+                    Employee ID
                   </label>
                   <input
                     type="text"
@@ -59,21 +51,49 @@ function LoginPage(){
                   {errors.username && <div className="invalid-feedback">{errors.username}</div>}
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label">
-                    Admin Password
+                  <label htmlFor="itemDesc" className="form-label">
+                    Item Description
                   </label>
                   <input
-                    type="password"
-                    className={`form-control form-control-sm ${errors.password && 'is-invalid'}`}
-                    id="password"
-                    value={password}
-                    onChange={handlePasswordChange}
+                    type="text"
+                    className={`form-control form-control-sm ${errors.username && 'is-invalid'}`}
+                    id="itemDesc"
+                    // value={username}
+                    // onChange={handleUsernameChange}
                   />
-                  {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+                  {/* {errors.username && <div className="invalid-feedback">{errors.username}</div>} */}
+                </div>
+                <div className="mb-3">
+                <label>
+        Item Make
+        <select>
+            <option value="wooden">Wooden</option>
+            <option value="glass">Glass</option>
+            <option value="plastic">Plastic</option>
+        </select>
+      </label>
+      </div>
+      <div className="mb-3">
+      <label>
+        Item Category
+        <select>
+            <option value="furniture">Furniture</option>
+            <option value="stationary">Stationary</option>
+            <option value="crockery">Crockery</option>
+        </select>
+      </label>
+      </div>
+      <div className="mb-3">
+      <label>Item Value
+      <input
+                    type="number"
+                    className={`form-control form-control-sm ${errors.username && 'is-invalid'}`}
+                    id="itemVal"/>
+      </label>
                 </div>
                 <div className="d-grid">
-                 <center> <button type="submit" className="btn btn-primary" style={{maxWidth: "120px"}}>
-                    Login
+                 <center> <button type="submit" className="btn btn-primary" style={{maxWidth: "200px"}}>
+                    Apply Loan
                   </button></center>
                 </div>
               </form>
@@ -82,8 +102,9 @@ function LoginPage(){
         </div>
       </div>
     </div>
+        
       </div>
       </div>);
 }
 
-export default  LoginPage;
+export default  ApplyLoan;

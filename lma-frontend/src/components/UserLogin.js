@@ -35,7 +35,7 @@ function UserLogin(){
   };
 
     return (<div>
-        <center><h4 className="lma">Loan Management Application</h4></center>
+        
       <div className="adminLogin">
         <center><h4>User Login</h4></center>
         <div className="container mt-5">

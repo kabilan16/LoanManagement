@@ -3,15 +3,26 @@
     padding: 20px;
 
 }
+.adminLogin h4{
+    color: white;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body{
+    background-color:#4169e0 ;
+}
 .lma
 {
-    background-color:#0033cc;
+    background-color:#5274da;
     color: white;
     padding: 20px;
+    font-size: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .adashboard
 {
     padding:20px;
+    border-radius: 10px;
 }
 label 
 {

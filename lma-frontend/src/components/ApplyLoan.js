@@ -21,13 +21,13 @@ function ApplyLoan(){
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      // Perform login logic here
+      
       console.log('Login successful');
     }
   };
 
     return (<div>
-        <center><h4 className="lma">Loan Management Application</h4></center>
+        
       <div className="adminLogin">
         <center><h4>Select Product and Apply for Loan</h4></center>
         <div className="container mt-5">

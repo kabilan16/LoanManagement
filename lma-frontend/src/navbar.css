@@ -1,0 +1,22 @@
+.navbar
+{
+    background-color: rgb(54, 54, 54);
+}
+
+.left
+{
+    color: white;
+    position: fixed;
+    left:0;
+    margin: 15px;
+    padding: 5px;
+    margin-top: 25px;
+    font-weight: bold;
+}
+.right
+{
+    margin-left: auto;
+    margin-right:0;
+
+      
+}

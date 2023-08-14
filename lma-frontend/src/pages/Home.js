@@ -3,8 +3,9 @@ function Home(){
     return (<div>
         
       <div className="adminLogin">
-        <center><h2 style={{backgroundColor: "#0033cc",color: "white",padding: "20px"}}>LOAN MANAGEMENT APPLICATION</h2></center>
-        
+        <center>
+        <img src={'https://savvyhrms.com/wp-content/uploads/2020/11/loan-management-768x576.jpg'}/>
+        </center>
       </div>
       </div>);
 }

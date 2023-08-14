@@ -1,25 +1,25 @@
 import { Outlet, Link } from "react-router-dom";
-
+import '../navbar.css';
 const Layout = () => {
     const linkStyle=
     {
-        marginTop: "5px",
-        padding: "5px",
-        backgroundColor: "beige",
+        color: "white",
         fontWeight: "bold",
-        borderRadius: "1px"
+        padding: "10px",
+        textDecoration: "none"
+        
     };
   return (
     <>
     <div className="navbar">
-      
-       
+      <div className="left"><p>Loan Management Application</p></div>
+       <div className="right">
             <Link to="/" style={linkStyle}>Home</Link>
           
-            <Link to="/userlogin" style={linkStyle}>user login</Link>
+            <Link to="/userlogin" style={linkStyle}>User Login</Link>
           
-            <Link to="/adminlogin" style={linkStyle}>admin login</Link>
-          
+            <Link to="/adminlogin" style={linkStyle}>Admin Login</Link>
+            </div>
       
       </div>
 

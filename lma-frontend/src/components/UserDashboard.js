@@ -1,15 +1,18 @@
-import '../LoginPage.css'
-function UserDashboard(){
-    return (<div>
-       
-      <center><h3 style={{padding: '10px', color: 'white'}}>User Dashboard</h3></center>
+import "../LoginPage.css";
+function UserDashboard() {
+  return (
+    <div>
+      <center>
+        <h3 className="pagetitle">User Dashboard</h3>
+      </center>
       <br></br>
-      <div style={{display: "flex", justifyContent: "space-around"}}>
-      <button className="adashboard">View loans</button>
-      <button className="adashboard"> Apply for loans</button>
-      <button className="adashboard">View Items Purchased</button>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <button className="adashboard">View loans</button>
+        <button className="adashboard"> Apply for loans</button>
+        <button className="adashboard">View Items Purchased</button>
       </div>
-      </div>);
+    </div>
+  );
 }
 
-export default  UserDashboard;
+export default UserDashboard;

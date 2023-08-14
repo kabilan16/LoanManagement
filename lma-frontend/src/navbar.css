@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Raleway:wght@600&family=Teko:wght@300&family=Ubuntu&display=swap');
 .navbar
 {
     background-color: rgb(54, 54, 54);
@@ -9,15 +10,15 @@
     color: white;
     position: fixed;
     left:0;
-    margin: 15px;
-    padding: 5px;
-    margin-top: 25px;
+    
     font-weight: bold;
+    font-family: 'Raleway', sans-serif;
 }
 .right
 {
     margin-left: auto;
     margin-right:0;
+    font-family: 'Raleway', sans-serif;
 
       
 }

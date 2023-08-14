@@ -33,7 +33,7 @@ function ApplyLoan(){
         <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <div className="card shadow p-4" style={{ backgroundColor: '#f8f9fa' }}>
+          <div className="card shadow p-4" style={{ backgroundColor: '#f8f9fa', borderRadius: "25px" }}>
             <div className="card-body">
               
               <form onSubmit={handleSubmit}>

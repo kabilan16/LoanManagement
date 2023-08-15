@@ -15,7 +15,7 @@ function UserDashboard() {
           <Card>
             <Card.Body>
               <Card.Text>List of loan cards applied by you</Card.Text>
-              <Link to="/page1">
+              <Link to="/viewloans">
                 <Button variant="primary">View Loans</Button>
               </Link>
             </Card.Body>
@@ -37,7 +37,7 @@ function UserDashboard() {
           <Card>
             <Card.Body>
               <Card.Text>List of items purchased by you</Card.Text>
-              <Link to="/page3">
+              <Link to="/viewitems">
                 <Button variant="primary">View Items</Button>
               </Link>
             </Card.Body>

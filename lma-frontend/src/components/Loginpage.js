@@ -1,16 +1,29 @@
 import "../LoginPage.css";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
+  const navigate = useNavigate();
+
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
+    clearError("username");
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    clearError("password");
+  };
+
+  const clearError = (fieldName) => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [fieldName]: "",
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -29,8 +42,18 @@ function LoginPage() {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      // Perform login logic here
-      console.log("Login successful");
+      // Check if username and password match predefined values
+      const predefinedUsers = {
+        // Add your predefined usernames and passwords here
+        "kabilan@gmail.com": "kabilan",
+        "kabilan@wellsfargo.com": "wellsfargo",
+      };
+
+      if (predefinedUsers[username] === password) {
+        navigate("/adashboard"); // Redirect using navigate function
+      } else {
+        setErrors({ login: "Invalid username or password" });
+      }
     }
   };
 
@@ -87,6 +110,8 @@ function LoginPage() {
                         </div>
                       )}
                     </div>
+                    {errors.login && <span>{errors.login}</span>}
+
                     <div className="d-grid">
                       <center>
                         {" "}

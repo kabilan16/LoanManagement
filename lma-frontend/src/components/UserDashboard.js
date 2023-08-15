@@ -1,16 +1,49 @@
 import "../LoginPage.css";
+import React from "react";
+import { Carousel, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 function UserDashboard() {
   return (
     <div>
       <center>
         <h3 className="pagetitle">User Dashboard</h3>
       </center>
-      <br></br>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <button className="adashboard">View loans</button>
-        <button className="adashboard"> Apply for loans</button>
-        <button className="adashboard">View Items Purchased</button>
-      </div>
+
+      <Carousel>
+        <Carousel.Item>
+          <Card>
+            <Card.Body>
+              <Card.Text>List of loan cards applied by you</Card.Text>
+              <Link to="/page1">
+                <Button variant="primary">View Loans</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Card>
+            <Card.Body>
+              <Card.Text>
+                Select the required products and apply for loan
+              </Card.Text>
+              <Link to="/applyloan">
+                <Button variant="primary">Apply Loan</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Card>
+            <Card.Body>
+              <Card.Text>List of items purchased by you</Card.Text>
+              <Link to="/page3">
+                <Button variant="primary">View Items</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Carousel.Item>
+      </Carousel>
     </div>
   );
 }

@@ -47,6 +47,7 @@ function LoginPage() {
         // Add your predefined usernames and passwords here
         "kabilan@gmail.com": "kabilan",
         "kabilan@wellsfargo.com": "wellsfargo",
+        "yashaswini@gmail.com":"WellsFargo"
       };
 
       if (predefinedUsers[username] === password) {

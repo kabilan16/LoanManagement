@@ -27,9 +27,9 @@ public class EmployeeCardDetails {
 	@NotNull
 	@Column(name="loan_id")
 	private int loanId;
-	@NotNull
-	@Column(name = "employee_id")
-	private int employeeId;
+//	@NotNull
+//	@Column(name = "employee_id")
+//	private int employeeId;
 
 	
 	@NotNull
@@ -47,19 +47,19 @@ public class EmployeeCardDetails {
 	@JoinColumn(name="loan_id")
 	private LoanCardDetails loanCard;
 
-	public EmployeeCardDetails(int employeeId,  Date cardIssueDate) {
-		this.employeeId = employeeId;
+	public EmployeeCardDetails(  Date cardIssueDate) {
+		//this.employeeId = employeeId;
 		//this.loanId = loanId;
 		this.cardIssueDate = cardIssueDate;
 	}
-	public int getEmployeeId(){
-		
-		return employeeId;
-	}
-	public void setEmployeeId(int employeeId){
-		
-		this.employeeId=employeeId;
-	}
+//	public int getEmployeeId(){
+//		
+//		return employeeId;
+//	}
+//	public void setEmployeeId(int employeeId){
+//		
+//		this.employeeId=employeeId;
+//	}
 	//public int getLoanId()
 //	{
 //		return loanId;

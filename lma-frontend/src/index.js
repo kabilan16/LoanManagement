@@ -18,6 +18,9 @@ import AddCustomer from "./components/AddCustomer";
 import LoginForm from "./components/LoginForm";
 import ViewLoans from "./components/ViewLoans";
 import ViewItems from "./components/ViewItems";
+import CustomerData from "./components/CustomerData";
+import LoanDataEdit from "./components/LoanDataEdit";
+import ItemMasterEditDetails from "./components/ItemMasterEditDetails";
 
 export default function Index() {
   return (
@@ -34,6 +37,9 @@ export default function Index() {
           <Route path="loginform" element={<LoginForm />} />
           <Route path="viewloans" element={<ViewLoans />} />
           <Route path="viewitems" element={<ViewItems />} />
+          <Route path="customerdata" element={<CustomerData />} />
+          <Route path="loandataedit" element={<LoanDataEdit/>}/>
+          <Route path="itemmastereditdetails" element={<ItemMasterEditDetails/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -208,3 +208,9 @@ input
     background-color: #c32222;
 
   }
+
+  .button1 button{
+    text-decoration: none;
+    text-size:5px;
+    padding:2px;
+  }

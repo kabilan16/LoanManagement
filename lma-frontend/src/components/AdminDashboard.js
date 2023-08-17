@@ -30,7 +30,7 @@ function AdminDashboard() {
               <Card.Text>
                 Editing the existing users/customers details
               </Card.Text>
-              <Link to="/page1">
+              <Link to="/customerdata">
                 <Button variant="primary">Edit users</Button>
               </Link>
             </Card.Body>
@@ -52,7 +52,7 @@ function AdminDashboard() {
             <Card.Body>
               <Card.Title>Loan Card Management</Card.Title>
               <Card.Text>Edit details for existing Loan cards</Card.Text>
-              <Link to="/page2">
+              <Link to="/loandataedit">
                 <Button variant="primary">Edit Loan Card </Button>
               </Link>
             </Card.Body>
@@ -74,7 +74,7 @@ function AdminDashboard() {
             <Card.Body>
               <Card.Title>Items Management</Card.Title>
               <Card.Text>Edit details of existing items</Card.Text>
-              <Link to="/page3">
+              <Link to="/itemmastereditdetails">
                 <Button variant="primary">Edit Items</Button>
               </Link>
             </Card.Body>

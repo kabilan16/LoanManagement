@@ -38,4 +38,9 @@ public class EmployeeMasterService {
 		employeeMasterRepo.deleteById(id);
 		return "Employee deleted successfully";
 	}
+
+	public List<EmployeeMaster> findEmployeeDetails() {
+		// TODO Auto-generated method stub
+		return employeeMasterRepo.findAll();
+	}
 }

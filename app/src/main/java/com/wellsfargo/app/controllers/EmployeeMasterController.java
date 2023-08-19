@@ -45,6 +45,10 @@ public class EmployeeMasterController{
 	public ResponseEntity<String> deleteEmployee(@PathVariable Integer id){
 		return ResponseEntity.ok(employeeMasterService.deleteEmployeebyId(id));
 	}
+	@GetMapping("/getAllEmployee")
+	public ResponseEntity<List<EmployeeMaster>> getAllEmployee(){
+		return ResponseEntity.ok(employeeMasterService.findEmployeeDetails());
+	}
 }
 
 	

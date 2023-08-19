@@ -46,12 +46,12 @@ public class EmployeeMaster {
 	@Column(name = "date_of_joining")
 	private Date dateOfJoining;
 	
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(mappedBy = "employeeMaster", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH })
 	private List<EmployeeIssueDetails> issue;
 	
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(mappedBy = "employeeMaster", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH })
 	private List<EmployeeCardDetails> loanCard;

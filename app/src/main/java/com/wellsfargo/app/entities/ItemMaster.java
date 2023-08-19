@@ -3,18 +3,22 @@ package com.wellsfargo.app.entities;
 //import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 //import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 //import javax.persistence.GeneratedValue;
 //import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 //import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 //import org.hibernate.annotations.GenericGenerator;
 
@@ -55,8 +59,9 @@ public class ItemMaster {
 	@NotNull
 	@Column(name="item_cost")
 	int itemCost  ;
-
-	@ManyToMany(mappedBy="items")
+	//@JsonManagedReference
+	@OneToMany(mappedBy="items", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH })
 	private List<EmployeeIssueDetails> issueDetails;
 	
 	public ItemMaster() {
@@ -103,6 +108,9 @@ public class ItemMaster {
 	}
 	public String getIssueStatus() {
 		return issueStatus;
+	}
+	public void setIssueStatus(String issueStatus) {
+		this.issueStatus=issueStatus;
 	}
 	public int getItemCost () {
 		return itemCost ;

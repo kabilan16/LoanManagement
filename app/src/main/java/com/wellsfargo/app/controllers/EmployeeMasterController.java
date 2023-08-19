@@ -35,7 +35,16 @@ public class EmployeeMasterController{
 		EmployeeMaster savedEmployee = employeeMasterService.createEmployee(employee);
 		return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);}
 	
+	@PutMapping("/editEmployee")
+	public ResponseEntity<EmployeeMaster> editEmployee(@RequestBody EmployeeMaster employee){
+		EmployeeMaster editedEmployee = employeeMasterService.editEmployee(employee);
+		return new ResponseEntity<>(editedEmployee,HttpStatus.CREATED);
+	}
 
+	@DeleteMapping("/deleteEmployee/{id}")
+	public ResponseEntity<String> deleteEmployee(@PathVariable Integer id){
+		return ResponseEntity.ok(employeeMasterService.deleteEmployeebyId(id));
+	}
 }
 
 	

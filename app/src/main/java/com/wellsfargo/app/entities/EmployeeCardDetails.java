@@ -23,13 +23,16 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name="EmployeeCardDetails")
 public class EmployeeCardDetails {
+	public EmployeeCardDetails() {
+	}
+
 	@Id
 	@NotNull
 	@Column(name="loan_id")
 	private int loanId;
-//	@NotNull
-//	@Column(name = "employee_id")
-//	private int employeeId;
+	@NotNull
+	@Column(name = "employee_id")
+	private int employeeId;
 
 	
 	@NotNull
@@ -48,26 +51,26 @@ public class EmployeeCardDetails {
 	private LoanCardDetails loanCard;
 
 	public EmployeeCardDetails(  Date cardIssueDate) {
-		//this.employeeId = employeeId;
-		//this.loanId = loanId;
+		this.employeeId = employeeId;
+		this.loanId = loanId;
 		this.cardIssueDate = cardIssueDate;
 	}
-//	public int getEmployeeId(){
-//		
-//		return employeeId;
-//	}
-//	public void setEmployeeId(int employeeId){
-//		
-//		this.employeeId=employeeId;
-//	}
-	//public int getLoanId()
-//	{
-//		return loanId;
-//	}
-//	public void setLoanId(int  loanId)
-//	{
-//		this.loanId = loanId;
-//	}
+	public int getEmployeeId(){
+
+		return employeeId;
+	}
+	public void setEmployeeId(int employeeId){
+
+		this.employeeId=employeeId;
+	}
+	public int getLoanId()
+	{
+		return loanId;
+	}
+	public void setLoanId(int  loanId)
+	{
+		this.loanId = loanId;
+	}
 	public Date getCardIssueDate() { 
 		return cardIssueDate;
 	}

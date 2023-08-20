@@ -14,6 +14,7 @@ import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 //import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -60,9 +61,9 @@ public class ItemMaster {
 	@Column(name="item_cost")
 	int itemCost  ;
 	//@JsonManagedReference
-	@OneToMany(mappedBy="items", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+	@OneToOne(mappedBy="items", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH })
-	private List<EmployeeIssueDetails> issueDetails;
+	private EmployeeIssueDetails issueDetails;
 	
 	public ItemMaster() {
 		

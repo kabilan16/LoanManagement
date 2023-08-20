@@ -23,42 +23,24 @@ public class UserDetails {
 	@MapsId
 	@JoinColumn(name="employee_id")
 	private EmployeeMaster employee;
-	
-	public int getEmployeeId() {
-		return employeeId;
+	public UserDetails() {
+		
 	}
-
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getIsAdmin() {
-		return isAdmin;
-	}
-
-	public void setIsAdmin(String isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-
-	public EmployeeMaster getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(EmployeeMaster employee) {
-		this.employee = employee;
-	}
-
 	public UserDetails (String password, String isAdmin) {
 		this.password = password;
 		this.isAdmin = isAdmin;
+	}
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+	public EmployeeMaster getEmployee() {
+		return employee;
 	}
 	
 }

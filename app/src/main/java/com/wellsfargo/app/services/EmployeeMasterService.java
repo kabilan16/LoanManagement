@@ -26,4 +26,21 @@ public class EmployeeMasterService {
 		return employeeMasterRepo.save(employee);
 
 	}
+
+	public EmployeeMaster editEmployee(EmployeeMaster employee) {
+		EmployeeMaster temp = employeeMasterRepo.getReferenceById(employee.getEmployeeId());
+		temp.setDesignation(employee.getDesignation());
+		return employeeMasterRepo.save(temp);
+
+	}
+
+	public String deleteEmployeebyId(Integer id) {
+		employeeMasterRepo.deleteById(id);
+		return "Employee deleted successfully";
+	}
+
+	public List<EmployeeMaster> findEmployeeDetails() {
+		// TODO Auto-generated method stub
+		return employeeMasterRepo.findAll();
+	}
 }

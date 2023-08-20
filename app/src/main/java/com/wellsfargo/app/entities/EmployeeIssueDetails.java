@@ -28,15 +28,15 @@ public class EmployeeIssueDetails {
 	@Column(name = "issue_id")
 	private int issueID;
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "employee_id")
 	private EmployeeMaster employeeMaster;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
-			CascadeType.REFRESH })
-	@JoinTable(name = "EmployeeIssueDetail_ItemMaster", joinColumns = @JoinColumn(name = "issue_id"), inverseJoinColumns = @JoinColumn(name = "item_id"))
-	private List<ItemMaster> items;
+	//@JsonBackReference
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+	@JoinColumn(name = "item_id")
+	private ItemMaster items;
 
 	@NotNull
 	@Column(name = "issue_date")

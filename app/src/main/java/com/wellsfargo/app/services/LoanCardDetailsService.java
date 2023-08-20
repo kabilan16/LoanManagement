@@ -1,5 +1,6 @@
 package com.wellsfargo.app.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class LoanCardDetailsService {
 		// TODO Auto-generated method stub
 		loanCardDetailsRepo.deleteById(id);
 		return "Deleted Successfully!";
+	}
+
+	public List<LoanCardDetails> findAllLoanDetails() {
+		// TODO Auto-generated method stub
+		return loanCardDetailsRepo.findAll();
 	}
 	
 	

@@ -3,6 +3,9 @@ package com.wellsfargo.app.controllers;
 import com.wellsfargo.app.entities.EmployeeMaster;
 import com.wellsfargo.app.entities.LoanCardDetails;
 import com.wellsfargo.app.services.LoanCardDetailsService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +37,10 @@ public class LoanCardDetailsController {
     { 
     	return ResponseEntity.ok(loanCardDetailsService.deleteDetailsById(id));
     }
-
+    @GetMapping("/getAllLoanCardDetails")
+    public ResponseEntity<List<LoanCardDetails>> getAllLoanDetails()
+    {
+    	return ResponseEntity.ok(loanCardDetailsService.findAllLoanDetails());
+    }
  
 }

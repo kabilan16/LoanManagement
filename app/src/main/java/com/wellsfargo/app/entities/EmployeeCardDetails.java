@@ -46,7 +46,9 @@ public class EmployeeCardDetails {
 	@MapsId
 	@JoinColumn(name="loan_id")
 	private LoanCardDetails loanCard;
-
+	public EmployeeCardDetails() {
+	
+	}
 	public EmployeeCardDetails(  Date cardIssueDate) {
 		//this.employeeId = employeeId;
 		//this.loanId = loanId;

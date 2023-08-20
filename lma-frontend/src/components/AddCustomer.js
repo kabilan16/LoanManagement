@@ -1,26 +1,58 @@
 import "../LoginPage.css";
 import React, { useState } from "react";
+import axios from 'axios';
 function AddCustomer() {
-  const [username, setUsername] = useState("");
-  const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState({
+    employeeId: '',
+    employeeName: '',
+    designation: '',
+    department: '',
+    dateOfBirth: '',
+    dateOfJoining: '',
+  });
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const [errorMessages, setErrorMessages] = useState({
+    employeeId: '',
+    employeeName: '',
+    designation: '',
+    department: '',
+    dateOfBirth: '',
+    dateOfJoining: '',
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    const validationErrors = {};
+    // Validate form fields
+    const newErrorMessages = {};
+    for (const field in formData) {
+      if (formData[field] === '') {
+        newErrorMessages[field] = `${field} is required`;
+      }
+    }
+    setErrorMessages(newErrorMessages);
 
-    if (username.trim() === "") {
-      validationErrors.username = "Username is required";
+    // If any errors, prevent the POST request
+    if (Object.keys(newErrorMessages).length > 0) {
+      return;
     }
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-    } else {
-      console.log("Login successful");
+    try {
+      console.log("form data:", formData);
+      const response = await axios.post('http://localhost:8081/addEmployee', formData);
+      console.log('Response:', response.data);
+      // Handle success or do something with the response
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle error
     }
   };
 
@@ -44,18 +76,19 @@ function AddCustomer() {
                         Employee ID
                       </label>
                       <input
-                        type="text"
+                        
                         className={`form-control form-control-sm ${
-                          errors.username && "is-invalid"
+                          errorMessages.employeeId && "is-invalid"
                         }`}
-                        id="username"
-                        value={username}
-                        onChange={handleUsernameChange}
+                        type="number"
+                        name="employeeId"
+                        value={formData.employeeId}
+                        onChange={handleInputChange}
                         style={{ border: "1px solid black" }}
                       />
-                      {errors.username && (
+                      {errorMessages.employeeId && (
                         <div className="invalid-feedback">
-                          {errors.username}
+                          {errorMessages.employeeId}
                         </div>
                       )}
                     </div>
@@ -66,26 +99,31 @@ function AddCustomer() {
                       <input
                         type="text"
                         className={`form-control form-control-sm ${
-                          errors.username && "is-invalid"
+                          errorMessages.employeeName && "is-invalid"
                         }`}
-                        id="empName"
+                        name="employeeName"
+          value={formData.employeeName}
+          onChange={handleInputChange}
                         style={{ border: "1px solid black" }}
                         // value={username}
                         // onChange={handleUsernameChange}
                       />
-                      {/* {errors.username && <div className="invalid-feedback">{errors.username}</div>} */}
+                      {errorMessages.employeeName}
                     </div>
                     <div className="mb-3">
                       <label>
                         Department
-                        <select>
+                        <select 
+                        name="department"
+                        value={formData.department}
+          onChange={handleInputChange}>
                           <option value="finance">Finance</option>
                           <option value="hr">HR</option>
                           <option value="sales">Sales</option>
                         </select>
                       </label>
                     </div>
-                    <div className="mb-3">
+                    {/* <div className="mb-3">
                       <label>
                         Gender
                         <select>
@@ -93,11 +131,13 @@ function AddCustomer() {
                           <option value="female">Female</option>
                         </select>
                       </label>
-                    </div>
+                    </div> */}
                     <div className="mb-3">
                       <label>
                         Designation
-                        <select>
+                        <select  name="designation"
+          value={formData.designation}
+          onChange={handleInputChange}>
                           <option value="manager">Manager</option>
                           <option value="executive">Executive</option>
                           <option value="srexecutive">Sr. Executive</option>
@@ -108,13 +148,19 @@ function AddCustomer() {
                     <div className="mb-3">
                       <div className="datefield">
                         <label>Date of Birth</label>
-                        <input type="date" />
+                        <input type="date" name="dateOfBirth"
+          value={formData.dateOfBirth}
+          onChange={handleInputChange} />
+          <div className="invalid-feedback">{errorMessages.dateOfBirth}</div>
                       </div>
                     </div>
                     <div className="mb-3">
                       <div className="datefield">
                         <label>Date of Joining</label>
-                        <input type="date" />
+                        <input type="date" name="dateOfJoining"
+          value={formData.dateOfJoining}
+          onChange={handleInputChange}/>
+          <div className="invalid-feedback">{errorMessages.dateOfJoining}</div>
                       </div>
                     </div>
                     <div className="d-grid">

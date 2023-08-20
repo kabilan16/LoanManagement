@@ -214,3 +214,31 @@ input
     text-size:5px;
     padding:2px;
   }
+
+
+/* Center the modal */
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Style the modal paper (rectangular box) */
+.modal-paper {
+  padding: 20px;
+  width: 400px;
+  max-height: 80vh; /* Set max height for the Paper component */
+  overflow-y: auto; /* Enable vertical scrolling within Paper */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+/* Style the modal content for scrolling */
+.modal-content {
+  max-height: 300px; /* Adjust the max height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}

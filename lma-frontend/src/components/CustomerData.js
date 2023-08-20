@@ -1,8 +1,162 @@
-import "../LoginPage.css";
 
-import React from "react";
+import "../LoginPage.css";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { Button, Table } from "react-bootstrap";
+import { Modal, Paper } from '@mui/material';
 function CustomerData() {
+
+  const [employees, setEmployees] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editEmployee, setEditEmployee] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deletedEmployeeId, setDeletedEmployeeId] = useState(null);
+
+  useEffect(() => {
+    
+    const delay = 500;
+    setTimeout(() => {
+      axios.get('http://localhost:8081/getAllEmployee')
+        .then(response => {
+          console.log('Fetched data:', response.data);
+          setEmployees(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }, delay);
+  }, ["no response "]);
+
+  const handleEdit = (employee) => {
+    setIsEditing(true);
+    setEditEmployee(employee);
+  };
+
+  const handleEditSubmit = async (editedEmployee) => {
+    try {
+      await axios.put(`http://localhost:8081/editEmployee`, editedEmployee);
+      const updatedEmployees = employees.map(emp =>
+        emp.employeeId === editedEmployee.employeeId ? editedEmployee : emp
+      );
+      setEmployees(updatedEmployees);
+      setIsEditing(false);
+      setEditEmployee(null);
+      // Simulate a refresh effect for 700ms
+      setTimeout(() => {
+        setIsEditing(false);
+      }, 700);
+    } catch (error) {
+      console.error('Error updating employee:', error);
+    }
+  };
+
+  const handleDelete = async (employeeId) => {
+    setIsDeleting(true);
+    setDeletedEmployeeId(employeeId);
+    try {
+      await axios.delete(`http://localhost:8081/deleteEmployee/${employeeId}`);
+      setEmployees(employees.filter(emp => emp.employeeId !== employeeId));
+      // Simulate a refresh effect for 700ms
+      setTimeout(() => {
+        setIsDeleting(false);
+      }, 700);
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+      setIsDeleting(false);
+    }
+  };
+
+  const EditForm = ({ employee, onClose, onSubmit }) => {
+    const [formData, setFormData] = useState(employee);
+  
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
+  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+  
+      try {
+        await axios.put(`http://localhost:8081/editEmployee`, formData);
+        onSubmit(formData); // Notify the parent component about the update
+        onClose(); // Close the edit form
+      } catch (error) {
+        console.error('Error updating employee:', error);
+      }
+    };
+  
+    return (
+      <div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Employee ID:</label>
+            <input
+              type="number"
+              name="employeeId"
+              value={formData.employeeId}
+              onChange={handleInputChange}
+              readOnly // To prevent editing the ID
+            />
+          </div>
+          <div>
+            <label>Employee Name:</label>
+            <input
+              type="text"
+              name="employeeName"
+              value={formData.employeeName}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Designation:</label>
+            <input
+              type="text"
+              name="designation"
+              value={formData.designation}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Department:</label>
+            <input
+              type="text"
+              name="department"
+              value={formData.department}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Date of Birth:</label>
+            <input
+              type="date"
+              name="dateOfBirth"
+              value={formData.dateOfBirth}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Date of Joining:</label>
+            <input
+              type="date"
+              name="dateOfJoining"
+              value={formData.dateOfJoining}
+              onChange={handleInputChange}
+            />
+          </div>
+          <br></br>
+          <button type="submit" style={{marginRight: "5px"}}>Submit</button>
+          <button onClick={onClose}>Cancel</button>
+        </form>
+      </div>
+    );
+  };
+  
+
+
   return (
     <div>
       <center>
@@ -33,7 +187,7 @@ function CustomerData() {
         </thead>
         <tbody>
           <tr>
-            <td>E01</td>
+            <td>01</td>
             <td>Ram</td>
             <td>Manager</td>
             <td>Finance</td>
@@ -42,19 +196,38 @@ function CustomerData() {
             <td>2000-01-01</td>
             <td><Button className="button1">Edit</Button> <Button classNmae="button1">Delete</Button></td>
           </tr>
-          <tr>
-            <td>E02</td>
-            <td>Anita</td>
-            <td>Manager</td>
-            <td>Finance</td>
-            <td>Female</td>
-            <td>1974-01-01</td>
-            <td>2001-01-01</td>
-            <td><Button className="button1">Edit</Button> <Button className="button1">Delete</Button></td>
-          </tr>
+          
           {/* Add more rows as needed */}
+          
+          {employees.map(item => (
+            <tr>
+          <td key={item.employeeId}>{item.employeeId}</td>
+          <td key={item.employeeId}>{item.employeeName}</td>
+          <td key={item.employeeId}>{item.designation}</td>
+          <td key={item.employeeId}>{item.department}</td>
+          <td key={item.employeeId}>Male</td>
+          <td key={item.employeeId}>{item.dateOfBirth}</td>
+          <td key={item.employeeId}>{item.dateOfJoining}</td>
+          <td><Button className="button1" onClick={() => handleEdit(item)}>Edit</Button> 
+          <Button className="button1" onClick={() => handleDelete(item.employeeId)}>Delete</Button></td>
+          </tr>
+        ))}
+          
         </tbody>
       </Table>
+      <Modal open={isEditing} onClose={() => setIsEditing(false)}>
+        <div className="modal-container">
+          <Paper elevation={3} className="modal-paper">
+            <EditForm
+              employee={editEmployee}
+              onClose={() => setIsEditing(false)}
+              onSubmit={handleEditSubmit}
+            />
+          </Paper>
+        </div>
+      </Modal>
+      {isDeleting && <div>Deleting...</div>}
+      
     </div>
   );
 }

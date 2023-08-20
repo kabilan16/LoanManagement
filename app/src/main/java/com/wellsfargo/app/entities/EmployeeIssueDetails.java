@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -28,16 +29,30 @@ public class EmployeeIssueDetails {
 	@Column(name = "issue_id")
 	private int issueID;
 	
-	//@JsonBackReference
+	@JsonBackReference
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "employee_id")
 	private EmployeeMaster employeeMaster;
 	
+	public EmployeeMaster getEmployeeMaster() {
+		return employeeMaster;
+	}
+
+	public void setEmployeeMaster(EmployeeMaster employeeMaster) {
+		this.employeeMaster = employeeMaster;
+	}
 	//@JsonBackReference
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "item_id")
 	private ItemMaster items;
 
+	public ItemMaster getItems() {
+		return items;
+	}
+
+	public void setItems(ItemMaster items) {
+		this.items = items;
+	}
 	@NotNull
 	@Column(name = "issue_date")
 	private Date issueDate;

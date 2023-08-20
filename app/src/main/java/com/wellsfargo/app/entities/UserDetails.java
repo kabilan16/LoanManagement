@@ -23,10 +23,24 @@ public class UserDetails {
 	@MapsId
 	@JoinColumn(name="employee_id")
 	private EmployeeMaster employee;
-	
+	public UserDetails() {
+		
+	}
 	public UserDetails (String password, String isAdmin) {
 		this.password = password;
 		this.isAdmin = isAdmin;
+	}
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+	public EmployeeMaster getEmployee() {
+		return employee;
 	}
 	
 }

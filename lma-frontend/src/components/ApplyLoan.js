@@ -79,6 +79,7 @@ function ApplyLoan() {
                       <label>
                         Item Make
                         <select>
+                        <option value="" selected disabled hidden>Choose here</option>
                           <option value="wooden">Wooden</option>
                           <option value="glass">Glass</option>
                           <option value="plastic">Plastic</option>
@@ -89,6 +90,7 @@ function ApplyLoan() {
                       <label>
                         Item Category
                         <select>
+                        <option value="" selected disabled hidden>Choose here</option>
                           <option value="furniture">Furniture</option>
                           <option value="stationary">Stationary</option>
                           <option value="crockery">Crockery</option>

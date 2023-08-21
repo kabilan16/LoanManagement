@@ -30,6 +30,7 @@ function AddCustomer() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("inside handle submit1");
 
     // Validate form fields
     const newErrorMessages = {};
@@ -38,13 +39,15 @@ function AddCustomer() {
         newErrorMessages[field] = `${field} is required`;
       }
     }
+    console.log("inside handle submit2");
     setErrorMessages(newErrorMessages);
-
+    console.log("inside handle submit3");
     // If any errors, prevent the POST request
     if (Object.keys(newErrorMessages).length > 0) {
+      console.log("inside handle submit4");
       return;
     }
-
+    
     try {
       console.log("form data:", formData);
       const response = await axios.post('http://localhost:8081/addEmployee', formData);
@@ -116,10 +119,13 @@ function AddCustomer() {
                         <select 
                         name="department"
                         value={formData.department}
-          onChange={handleInputChange}>
-                          <option value="finance">Finance</option>
-                          <option value="hr">HR</option>
-                          <option value="sales">Sales</option>
+          onChange={handleInputChange}
+          
+          >
+            <option value="" selected disabled hidden>Select Dept</option>
+                          <option value="Finance">Finance</option>
+                          <option value="HR">HR</option>
+                          <option value="Sales">Sales</option>
                         </select>
                       </label>
                     </div>
@@ -138,6 +144,7 @@ function AddCustomer() {
                         <select  name="designation"
           value={formData.designation}
           onChange={handleInputChange}>
+            <option value="" selected disabled hidden>Select Desg</option>
                           <option value="manager">Manager</option>
                           <option value="executive">Executive</option>
                           <option value="srexecutive">Sr. Executive</option>
@@ -172,6 +179,7 @@ function AddCustomer() {
                           style={{ maxWidth: "200px" }}
                         >
                           Add Data
+                          
                         </button>
                       </center>
                     </div>

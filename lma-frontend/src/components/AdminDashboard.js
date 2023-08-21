@@ -41,7 +41,7 @@ function AdminDashboard() {
             <Card.Body>
               <Card.Title>Loan Card Management</Card.Title>
               <Card.Text>Add details for new Loan cards</Card.Text>
-              <Link to="/page2">
+              <Link to="/loancarddata">
                 <Button variant="primary">Add Loan Card </Button>
               </Link>
             </Card.Body>
@@ -63,7 +63,7 @@ function AdminDashboard() {
             <Card.Body>
               <Card.Title>Items Management</Card.Title>
               <Card.Text>Add details about an item</Card.Text>
-              <Link to="/page3">
+              <Link to="/additems">
                 <Button variant="primary">Add Item</Button>
               </Link>
             </Card.Body>

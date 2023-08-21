@@ -35,7 +35,7 @@ function LoanDataEdit() {
     try {
       await axios.put(`http://localhost:8081/updateLoanDetails`, editedEmployee);
       const updatedEmployees = employees.map(emp =>
-        emp.employeeId === editedEmployee.employeeId ? editedEmployee : emp
+        emp.loanId === editedEmployee.loanId ? editedEmployee : emp
       );
       setEmployees(updatedEmployees);
       setIsEditing(false);
@@ -54,7 +54,7 @@ function LoanDataEdit() {
     setDeletedEmployeeId(employeeId);
     try {
       await axios.delete(`http://localhost:8081/deleteLoanDetails/${employeeId}`);
-      setEmployees(employees.filter(emp => emp.employeeId !== employeeId));
+      setEmployees(employees.filter(emp => emp.loanId !== employeeId));
       // Simulate a refresh effect for 700ms
       setTimeout(() => {
         setIsDeleting(false);

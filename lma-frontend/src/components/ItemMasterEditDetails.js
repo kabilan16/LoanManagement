@@ -127,13 +127,47 @@ function LoanDataEdit() {
           </label> 
           </div>
           <div>
-            <label>Loan Duration in months:</label>
-            <input
-              type="number"
-              name="durationInMonths"
-              value={formData.durationInMonths}
-              onChange={handleInputChange}
-            />
+          <label>
+                        Item Make
+                        <select 
+                        name="itemMake"
+                        value={formData.itemMake}
+          onChange={handleInputChange}
+          
+          >
+            <option value="" selected disabled hidden>Select Item Make</option>
+                          <option value="Wooden">Wooden</option>
+                          <option value="Glass">Glass</option>
+                          <option value="Plastic">Plastic</option>
+                        </select>
+                      </label>
+          </div>
+          <div>
+          <label>
+                        Item Category
+                        <select  name="itemCategory"
+          value={formData.itemCategory}
+          onChange={handleInputChange}>
+            <option value="" selected disabled hidden>Select category</option>
+                          <option value="Furniture">Furniture</option>
+                          <option value="Crockery">Crockery</option>
+                          <option value="Stationary">Stationary</option>
+
+                        </select>
+                      </label>
+          </div>
+          <div>
+          <label >
+                        Item Cost
+                      </label>
+                      <input
+                        
+                        type="number"
+                        name="itemCost"
+                        value={formData.itemCost}
+                        onChange={handleInputChange}
+                       
+                      />
           </div>
                     <br></br>
           <button type="submit" style={{marginRight: "5px"}}>Submit</button>
@@ -181,27 +215,34 @@ function ItemMasterEditDetails() {
             <td>5000</td>
             <td><Button className="button1">Edit</Button> <Button classNmae="button1">Delete</Button></td>
           </tr>
-          <tr>
-            <td>102</td>
-            <td>Dining Table</td>
-            <td>Y</td>
-            <td>Wooden</td>
-            <td>Furniture</td>
-            <td>15000</td>
-            <td><Button className="button1">Edit</Button> <Button className="button1">Delete</Button></td>
+          {employees.map(item => (
+            <tr>
+          <td key={item.itemId}>{item.itemId}</td>
+          <td key={item.itemId}>{item.itemDesc}</td>
+          <td key={item.itemId}>{item.issueStatus}</td>
+          <td key={item.itemId}>{item.itemMake}</td>
+          <td key={item.itemId}>{item.itemDesc}</td>
+          <td key={item.itemId}>{item.itemCost}</td>
+          
+          <td><Button className="button1" onClick={() => handleEdit(item)}>Edit</Button> 
+          <Button className="button1" onClick={() => handleDelete(item.itemId)}>Delete</Button></td>
           </tr>
-          <tr>
-            <td>103</td>
-            <td>Dining Set</td>
-            <td>N</td>
-            <td>Glass</td>
-            <td>Crockery</td>
-            <td>9000</td>
-            <td><Button className="button1">Edit</Button> <Button className="button1">Delete</Button></td>
-          </tr>
+        ))}
           {/* Add more rows as needed */}
         </tbody>
       </Table>
+      <Modal open={isEditing} onClose={() => setIsEditing(false)}>
+        <div className="modal-container">
+          <Paper elevation={3} className="modal-paper">
+            <EditForm
+              employee={editEmployee}
+              onClose={() => setIsEditing(false)}
+              onSubmit={handleEditSubmit}
+            />
+          </Paper>
+        </div>
+      </Modal>
+      {isDeleting && <div>Deleting...</div>}
     </div>
   );
 }

@@ -76,4 +76,12 @@ public class EmployeeCardDetails {
 	public void setCardIssueDate(Date cardIssueDate) {
 		this.cardIssueDate = cardIssueDate;
 	}
+
+	public EmployeeMaster getEmployeeMaster() {
+		return employeeMaster;
+	}
+	public LoanCardDetails getLoanCardDetails() {
+		return loanCard;
+	}
+
 }

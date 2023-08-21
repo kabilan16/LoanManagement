@@ -21,6 +21,8 @@ import ViewItems from "./components/ViewItems";
 import CustomerData from "./components/CustomerData";
 import LoanDataEdit from "./components/LoanDataEdit";
 import ItemMasterEditDetails from "./components/ItemMasterEditDetails";
+import LoanCardData from "./components/LoanCardData";
+import AddItems from "./components/AddItems";
 
 export default function Index() {
   return (
@@ -40,6 +42,8 @@ export default function Index() {
           <Route path="customerdata" element={<CustomerData />} />
           <Route path="loandataedit" element={<LoanDataEdit/>}/>
           <Route path="itemmastereditdetails" element={<ItemMasterEditDetails/>}/>
+          <Route path="loancarddata" element={<LoanCardData />}/>
+          <Route path="additems" element={<AddItems />} />
         </Route>
       </Routes>
     </BrowserRouter>

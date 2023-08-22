@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Table } from "react-bootstrap";
 import { Modal, Paper } from '@mui/material';
 
-function LoanDataEdit() {
+function ItemMasterEditDetails() {
   const [employees, setEmployees] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editEmployee, setEditEmployee] = useState(null);
@@ -107,7 +107,7 @@ function LoanDataEdit() {
             <input
               type="text"
               name="itemDesc"
-              value={formData.itemDesc}
+              value={formData.itemDescription}
               onChange={handleInputChange}
               readOnly // To prevent editing the ID
             />
@@ -176,8 +176,8 @@ function LoanDataEdit() {
       </div>
     );
   };
-} 
-function ItemMasterEditDetails() {
+
+
   return (
     <div>
       <center>
@@ -218,10 +218,10 @@ function ItemMasterEditDetails() {
           {employees.map(item => (
             <tr>
           <td key={item.itemId}>{item.itemId}</td>
-          <td key={item.itemId}>{item.itemDesc}</td>
+          <td key={item.itemId}>{item.itemDescription}</td>
           <td key={item.itemId}>{item.issueStatus}</td>
           <td key={item.itemId}>{item.itemMake}</td>
-          <td key={item.itemId}>{item.itemDesc}</td>
+          <td key={item.itemId}>{item.itemCategory}</td>
           <td key={item.itemId}>{item.itemCost}</td>
           
           <td><Button className="button1" onClick={() => handleEdit(item)}>Edit</Button> 

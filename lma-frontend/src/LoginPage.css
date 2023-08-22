@@ -92,6 +92,19 @@ input
     margin-top: 15px;
 }
 
+.successMsg{
+  font-family: 'Raleway', sans-serif;
+  color: green;
+  align-items: center;
+  margin-top: 6px;
+}
+.failMsg{
+  font-family: 'Raleway', sans-serif;
+  color: red;
+  align-items: center;
+  margin-top: 6px;
+}
+
 .homeright
 {
     width:50%;

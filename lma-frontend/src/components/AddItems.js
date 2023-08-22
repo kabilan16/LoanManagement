@@ -2,15 +2,17 @@ import "../LoginPage.css";
 import React, { useState } from "react";
 import axios from 'axios';
 function AddItems() {
-  const [formData, setFormData] = useState({
+  const initialFormData={
     itemId: '',
     itemDescription: '',
     itemMake: '',
     itemCategory: '',
     issueStatus: '',
     itemCost: '',
-  });
-
+  }
+  const [reqSuccess, setReqSuccess] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
+  const [reqFail, setReqFail] = useState(false);
   const [errorMessages, setErrorMessages] = useState({
     itemId: '',
     itemDescription: '',
@@ -22,6 +24,8 @@ function AddItems() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    setReqSuccess(false);
+    setReqFail(false);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -52,9 +56,12 @@ function AddItems() {
       console.log("form data:", formData);
       const response = await axios.post('http://localhost:8081/addItems', formData);
       console.log('Response:', response.data);
+      setFormData(initialFormData);
+      setReqSuccess(true);
       // Handle success or do something with the response
     } catch (error) {
       console.error('Error:', error);
+      setReqFail(true);
       // Handle error
     }
   };
@@ -198,6 +205,8 @@ function AddItems() {
                         </button>
                       </center>
                     </div>
+                    {reqSuccess && <center><div className="successMsg">Item is added successfully</div></center>}
+                    {reqFail && <center><div className="failMsg">Error occured. Could not add item.</div></center>}    
                   </form>
                 </div>
               </div>

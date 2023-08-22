@@ -17,7 +17,7 @@ public class UserDetails {
 	@Column(name="password")
 	String password;
 	@Column(name="is_admin")
-	String isAdmin;
+	boolean isAdmin;
 	
 	@OneToOne
 	@MapsId
@@ -26,7 +26,7 @@ public class UserDetails {
 	public UserDetails() {
 		
 	}
-	public UserDetails (String password, String isAdmin) {
+	public UserDetails (String password, boolean isAdmin) {
 		this.password = password;
 		this.isAdmin = isAdmin;
 	}
@@ -36,7 +36,7 @@ public class UserDetails {
 	public String getPassword() {
 		return password;
 	}
-	public String getIsAdmin() {
+	public boolean getIsAdmin() {
 		return isAdmin;
 	}
 	public EmployeeMaster getEmployee() {

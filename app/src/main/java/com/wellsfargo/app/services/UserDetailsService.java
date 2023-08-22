@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wellsfargo.app.entities.UserDetails;
+import com.wellsfargo.app.helper.LoginHelper;
 import com.wellsfargo.app.repositories.UserDetailsRepo;
 
 @Service
@@ -16,9 +17,20 @@ public class UserDetailsService {
 	@Autowired
 	private UserDetailsRepo userDetailsRepo;
 
-	public Optional<UserDetails> findUserDetailsById(Integer id) {
+
+
+	public String validateUser(LoginHelper user) {
 		// TODO Auto-generated method stub
-		Optional<UserDetails> temp =  userDetailsRepo.findById( id);
-		return temp;
+		int employeeId = user.getEmployeeId();
+		String password = user.getPassword();
+	
+		if(!userDetailsRepo.existsById(employeeId))
+			return "Invalid User";
+		UserDetails details = userDetailsRepo.findById(employeeId).get();
+		if(password.equals(details.getPassword())&&!(details.getIsAdmin()))
+			return "credentials are correct";
+		else if(details.getIsAdmin())
+			return "Not A User";
+		return "Password is Incorrect";
 	}
 }

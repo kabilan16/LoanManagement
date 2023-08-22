@@ -13,7 +13,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.Date;
 
@@ -58,7 +57,7 @@ public class EmployeeMaster {
 	
 	@OneToOne(mappedBy="employee", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private UserDetails user;
+	private UsersDetails user;
 	
 	public EmployeeMaster(){
 		

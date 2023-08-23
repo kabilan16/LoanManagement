@@ -36,7 +36,7 @@ public class EmployeeCardDetails {
 	@Column(name="card_issue_date")
 	private Date cardIssueDate;
 	
-
+	@NotNull
 	@JsonBackReference
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "employee_id")
@@ -46,6 +46,15 @@ public class EmployeeCardDetails {
 	@MapsId
 	@JoinColumn(name="loan_id")
 	private LoanCardDetails loanCard;
+	public LoanCardDetails getLoanCardDetails() {
+		return loanCard;
+	}
+	public void setLoanCard(LoanCardDetails loanCard) {
+		this.loanCard = loanCard;
+	}
+	public void setEmployeeMaster(EmployeeMaster employeeMaster) {
+		this.employeeMaster = employeeMaster;
+	}
 	public EmployeeCardDetails() {
 	
 	}
@@ -62,7 +71,7 @@ public class EmployeeCardDetails {
 //		
 //		this.employeeId=employeeId;
 //	}
-	//public int getLoanId()
+//	public int getLoanId()
 //	{
 //		return loanId;
 //	}
@@ -76,12 +85,9 @@ public class EmployeeCardDetails {
 	public void setCardIssueDate(Date cardIssueDate) {
 		this.cardIssueDate = cardIssueDate;
 	}
-
 	public EmployeeMaster getEmployeeMaster() {
+		// TODO Auto-generated method stub
 		return employeeMaster;
 	}
-	public LoanCardDetails getLoanCardDetails() {
-		return loanCard;
-	}
-
+	
 }

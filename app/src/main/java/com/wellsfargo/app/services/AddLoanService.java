@@ -80,7 +80,7 @@ public class AddLoanService {
 		loanc.setDurationInMonths(12);
 		//define employeeCardDetails
 		card.setLoanCard(loanc);
-		if(employeeRepo.findById(employeeId)==null)
+		if(!employeeRepo.existsById(employeeId))
 			return "Employee Invalid";
 		else {
 			employee = employeeRepo.findById(employeeId).get();

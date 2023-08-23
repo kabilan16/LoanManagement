@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wellsfargo.app.entities.LoanCardDetails;
 import com.wellsfargo.app.helper.AddLoanHelper;
 import com.wellsfargo.app.services.AddLoanService;
 @RestController

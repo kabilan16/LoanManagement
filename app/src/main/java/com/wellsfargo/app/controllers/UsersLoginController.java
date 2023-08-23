@@ -9,18 +9,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wellsfargo.app.services.UserDetailsService;
-import com.wellsfargo.app.entities.UserDetails;
+import com.wellsfargo.app.services.UsersDetailsService;
 import com.wellsfargo.app.helper.LoginHelper;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
-public class UserLoginController {
+public class UsersLoginController {
 	@Autowired
-	private UserDetailsService userDetailsService;
+	private UsersDetailsService usersDetailsService;
 	@PostMapping("/validateUser") 
 	public ResponseEntity<String> validateUserDetails(@RequestBody LoginHelper user) {
-		return ResponseEntity.ok(userDetailsService.validateUser(user));
+		return ResponseEntity.ok(usersDetailsService.validateUser(user));
 	}
 
 }

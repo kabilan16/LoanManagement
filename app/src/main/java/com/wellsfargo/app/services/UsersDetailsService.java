@@ -1,21 +1,19 @@
 package com.wellsfargo.app.services;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 //import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.wellsfargo.app.entities.UserDetails;
+import com.wellsfargo.app.entities.UsersDetails;
 import com.wellsfargo.app.helper.LoginHelper;
-import com.wellsfargo.app.repositories.UserDetailsRepo;
+import com.wellsfargo.app.repositories.UsersDetailsRepo;
 
 @Service
-public class UserDetailsService {
+public class UsersDetailsService {
 	@Autowired
-	private UserDetailsRepo userDetailsRepo;
+	private UsersDetailsRepo usersDetailsRepo;
 
 
 
@@ -24,9 +22,9 @@ public class UserDetailsService {
 		int employeeId = user.getEmployeeId();
 		String password = user.getPassword();
 	
-		if(!userDetailsRepo.existsById(employeeId))
+		if(!usersDetailsRepo.existsById(employeeId))
 			return "Invalid User";
-		UserDetails details = userDetailsRepo.findById(employeeId).get();
+		UsersDetails details = usersDetailsRepo.findById(employeeId).get();
 		if(password.equals(details.getPassword())&&!(details.getIsAdmin()))
 			return "credentials are correct";
 		else if(details.getIsAdmin())

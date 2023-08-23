@@ -2,10 +2,10 @@ package com.wellsfargo.app.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.wellsfargo.app.entities.UserDetails;
+import com.wellsfargo.app.entities.UsersDetails;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserDetailsRepo extends JpaRepository<UserDetails, Integer>{
+public interface UsersDetailsRepo extends JpaRepository<UsersDetails, Integer>{
 
 }

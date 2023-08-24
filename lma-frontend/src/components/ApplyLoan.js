@@ -1,9 +1,11 @@
 import "../LoginPage.css";
 import axios from 'axios';
 import React, { useState } from "react";
-
+import { useLocation } from 'react-router-dom';
 function ApplyLoan() {
-
+  const location = useLocation();
+  const passedProp = location.state && location.state.passedProp;
+  console.log(passedProp);
   const initialFormData={
     employeeId: '',
     itemDescription: '',
@@ -85,7 +87,7 @@ function ApplyLoan() {
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                      <label htmlFor="username" className="form-label">
+                      {/* <label htmlFor="username" className="form-label">
                         Employee ID
                       </label>
                       <input
@@ -102,7 +104,20 @@ function ApplyLoan() {
                         <div className="invalid-feedback">
                           {errorMessages.employeeId}
                         </div>
-                      )}
+                      )} */}
+                      <label>
+                        Employee ID
+                        <select 
+                        name="employeeId"
+                        value={formData.employeeId}
+          onChange={handleInputChange}
+          
+          >
+            <option value="" selected disabled hidden>Select ID</option>
+                          <option value={passedProp}>{passedProp}</option>
+                          
+                        </select>
+                      </label>
                     </div>
                     <div className="mb-3">
                       <label htmlFor="itemDesc" className="form-label">

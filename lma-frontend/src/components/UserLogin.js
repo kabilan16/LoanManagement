@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 function UserLogin() {
-  
+  let passingProp='hmm';
   const initialFormData={
     employeeId: '',
     password: ''
@@ -50,6 +50,8 @@ function UserLogin() {
     
     try {
       console.log("form data:", formData);
+      passingProp=formData.employeeId;
+      console.log(passingProp);
       const response = await axios.post('http://localhost:8081/validateUser', formData);
       console.log('Response:', response.data);
       setPostResponse(response.data);
@@ -57,7 +59,7 @@ function UserLogin() {
       setReqSuccess(true);
       // Handle success or do something with the response
       if (response.data === "credentials are correct" || response.data === "Not A User") {
-              navigate("/udashboard");
+              navigate("/udashboard", { state: { passingProp } });
             } else {
               setErrorMessages({ login: "Invalid username or password" });
             }

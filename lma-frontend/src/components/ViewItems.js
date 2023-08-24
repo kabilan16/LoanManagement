@@ -3,8 +3,12 @@ import "../LoginPage.css";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Table } from "react-bootstrap";
+import { useLocation } from 'react-router-dom';
 function ViewItems() {
   const [employees, setEmployees] = useState([]);
+  const location = useLocation();
+  const passedProp = location.state && location.state.passedProp;
+  console.log(passedProp)
   let prevEmployeeId = null;
   let prevDesignation = null;
   let prevDepartment = null;
@@ -12,7 +16,7 @@ function ViewItems() {
     
     const delay = 500;
     setTimeout(() => {
-      axios.get('http://localhost:8081/getDetails/21')
+      axios.get(`http://localhost:8081/getDetails/${passedProp}`)
         .then(response => {
           console.log('Fetched data:', response.data);
           setEmployees(response.data);

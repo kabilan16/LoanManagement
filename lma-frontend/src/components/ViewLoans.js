@@ -1,15 +1,22 @@
 import "../LoginPage.css";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { Table } from "react-bootstrap";
 function ViewLoans() {
   const [employees, setEmployees] = useState([]);
+  const location = useLocation();
+  const passedProp = location.state && location.state.passedProp;
+  console.log(passedProp)
+  let prevEmployeeId = null;
+  let prevDesignation = null;
+  let prevDepartment = null;
   useEffect(() => {
     
     const delay = 500;
     setTimeout(() => {
-      axios.get('http://localhost:8081/getAllLoanDetails/21')
+      axios.get(`http://localhost:8081/getAllLoanDetails/${passedProp}`)
         .then(response => {
           console.log('Fetched data:', response.data);
           setEmployees(response.data);
@@ -24,16 +31,41 @@ function ViewLoans() {
       <center>
         <h3 className="pagetitle">Loan Cards Availed</h3>
       </center>
-          {employees.map(emp => (
-           <center>
-           <div className="userDetails"> 
-          <p key={emp.employeeId}>Employee ID: {emp.employeeId}</p>
-          <p key={emp.employeeId}>Designation: {emp.designation}</p>
-          <p key={emp.employeeId}>Department: {emp.department}</p>
-          </div>
-      </center>
+      {
+
+employees.map((loan, index) => {
+        const {
+          employeeId,
+          designation,
+          department,
           
-        ))}
+        } = loan;
+
+        // Only display employee details if they are different from the previous entry
+        
+
+        const displayEmployeeDetails =
+          employeeId !== prevEmployeeId ||
+          designation !== prevDesignation ||
+          department !== prevDepartment;
+
+        prevEmployeeId = employeeId;
+        prevDesignation = designation;
+        prevDepartment = department;
+        return(
+        <div key={index}>
+            {displayEmployeeDetails && (
+              <center>
+              <div className="userDetails"> 
+             <p >Employee ID: {employeeId}</p>
+             <p >Designation: {designation}</p>
+             <p >Department: {department}</p>
+             </div>
+         </center>
+            )}
+            </div>
+            );
+      })}
 
         
         

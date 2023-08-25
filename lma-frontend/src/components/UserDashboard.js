@@ -2,8 +2,11 @@ import "../LoginPage.css";
 import React from "react";
 import { Carousel, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { useLocation } from 'react-router-dom';
 function UserDashboard() {
+  const location=useLocation();
+  const passedProp = location.state && location.state.passingProp;
+  console.log("received data: ",passedProp);
   return (
     <div>
       <center>
@@ -15,7 +18,7 @@ function UserDashboard() {
           <Card>
             <Card.Body>
               <Card.Text>List of loan cards applied by you</Card.Text>
-              <Link to="/viewloans">
+              <Link to="/viewloans" state={{ passedProp }}>
                 <Button variant="primary">View Loans</Button>
               </Link>
             </Card.Body>
@@ -27,7 +30,7 @@ function UserDashboard() {
               <Card.Text>
                 Select the required products and apply for loan
               </Card.Text>
-              <Link to="/applyloan">
+              <Link to="/applyloan" state={{ passedProp }}>
                 <Button variant="primary">Apply Loan</Button>
               </Link>
             </Card.Body>
@@ -37,7 +40,7 @@ function UserDashboard() {
           <Card>
             <Card.Body>
               <Card.Text>List of items purchased by you</Card.Text>
-              <Link to="/viewitems">
+              <Link to="/viewitems" state={{ passedProp }}>
                 <Button variant="primary">View Items</Button>
               </Link>
             </Card.Body>

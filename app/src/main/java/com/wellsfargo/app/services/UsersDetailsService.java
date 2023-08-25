@@ -30,7 +30,7 @@ public class UsersDetailsService implements UserDetailsService {
 		UsersDetails details = usersDetailsRepo.findById(employeeId).get();
 		if(password.equals(details.getPassword())&&!(details.getIsAdmin()))
 			return "credentials are correct";
-		else if(details.getIsAdmin())
+		else if(password.equals(details.getPassword())&&details.getIsAdmin())
 			return "Not A User";
 		return "Password is Incorrect";
 	}

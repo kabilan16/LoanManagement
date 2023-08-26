@@ -52,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 //.antMatchers("/hellouser").hasAnyRole("USER","ADMIN")
-                .antMatchers("/authenticate"
+                .antMatchers("/UserLogin/authenticate"
                         //        ,"/transaction/**","/beneficiary/**","/account/**"
                 )
                 .permitAll()

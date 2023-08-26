@@ -10,11 +10,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.wellsfargo.app.services.UsersDetailsService;
 import com.wellsfargo.app.helper.LoginHelper;
@@ -35,7 +31,11 @@ public class UsersLoginController {
 	public ResponseEntity<String> validateUserDetails(@RequestBody LoginHelper user) {
 		return ResponseEntity.ok(usersDetailsService.validateUser(user));
 	}
-	@PostMapping("/authenticate")
+	@GetMapping("/")
+	public String home() {
+		return "Welcome to LMA User Login!!";
+	}
+	@PostMapping("/UserLogin/authenticate")
 	public JWTResponse authenticate(@RequestBody JWTRequest jwtRequest) throws Exception{
 
 		try {

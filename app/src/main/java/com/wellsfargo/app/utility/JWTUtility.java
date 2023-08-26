@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -39,10 +40,20 @@ public class JWTUtility implements Serializable {
 
 
     //for retrieving any information from token we will need the secret key
-    private Claims getAllClaimsFromToken(String token) {
+    public Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
     }
 
+    public void printClaims(String token) {
+        Claims claims = getAllClaimsFromToken(token);
+
+        System.out.println("Claims from JWT Token:");
+        for (Map.Entry<String, Object> entry : claims.entrySet()) {
+            String claimKey = entry.getKey();
+            Object claimValue = entry.getValue();
+            System.out.println(claimKey + ": " + claimValue);
+        }
+    }
 
     //check if the token has expired
     private Boolean isTokenExpired(String token) {
@@ -70,4 +81,7 @@ public class JWTUtility implements Serializable {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+
+
+
 }

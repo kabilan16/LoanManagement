@@ -1,7 +1,9 @@
 package com.wellsfargo.app.config;
 
 import com.wellsfargo.app.filter.JwtFilter;
+import com.wellsfargo.app.services.AdminDetailsService;
 import com.wellsfargo.app.services.UsersDetailsService;
+import com.wellsfargo.app.utility.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,10 +21,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UsersDetailsService usersDetailsService;
     @Autowired
+    private AdminDetailsService adminDetailsService;
+    @Autowired
     private JwtFilter jwtFilter;
+
+    @Autowired
+    private JWTUtility jwtUtility;
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(usersDetailsService);
+        auth.userDetailsService(usersDetailsService)
+                .and()
+                .userDetailsService(adminDetailsService);
     }
 
     @Override
@@ -31,36 +40,54 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf()
-//                .disable()
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+////        http.csrf()
+////                .disable()
+////                .authorizeRequests()
+////                .antMatchers("/authenticate")
+////                .permitAll()
+////                .anyRequest()
+////                .authenticated()
+////                .and()
+////                .sessionManagement()
+////                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+////        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+//
+//        http
+//                .cors().and()
+//                .csrf().disable()
+//                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+//
 //                .authorizeRequests()
-//                .antMatchers("/authenticate")
+//                //.antMatchers("/hellouser").hasAnyRole("USER","ADMIN")
+//                .antMatchers("AdminLogin/authenticate","/UserLogin/authenticate"
+//                        //        ,"/transaction/**","/beneficiary/**","/account/**"
+//                )
 //                .permitAll()
-//                .anyRequest()
-//                .authenticated()
+//                .anyRequest().authenticated()
 //                .and()
 //                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//        //.and().httpBasic()
+//        ;
+//    }
 
+
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
         http
                 .cors().and()
                 .csrf().disable()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-
                 .authorizeRequests()
-                //.antMatchers("/hellouser").hasAnyRole("USER","ADMIN")
-                .antMatchers("/UserLogin/authenticate"
-                        //        ,"/transaction/**","/beneficiary/**","/account/**"
-                )
-                .permitAll()
+                .antMatchers("/UserLogin/authenticate").permitAll() // User login endpoint
+                .antMatchers("/AdminLogin/authenticate").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        //.and().httpBasic()
-        ;
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 }

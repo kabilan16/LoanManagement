@@ -31,9 +31,10 @@ public class UsersLoginController {
 	public ResponseEntity<String> validateUserDetails(@RequestBody LoginHelper user) {
 		return ResponseEntity.ok(usersDetailsService.validateUser(user));
 	}
-	@GetMapping("/")
+
+	@GetMapping("/user")
 	public String home() {
-		return "Welcome to LMA User Login!!";
+		return "Hello, User. Login here!!";
 	}
 	@PostMapping("/UserLogin/authenticate")
 	public JWTResponse authenticate(@RequestBody JWTRequest jwtRequest) throws Exception{

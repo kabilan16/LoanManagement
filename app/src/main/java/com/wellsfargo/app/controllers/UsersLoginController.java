@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -38,21 +39,32 @@ public class UsersLoginController {
 	public JWTResponse authenticate(@RequestBody JWTRequest jwtRequest) throws Exception{
 
 		try {
-			authenticationManager.authenticate(
+			System.out.println("bp1");
+			Authentication auth = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(
 							jwtRequest.getUsername(),
 							jwtRequest.getPassword()
 					)
 			);
-		} catch (BadCredentialsException e) {
+			System.out.println("bp2");
+			System.out.println("auth manager complete");
+			System.out.println(auth.isAuthenticated());
+			System.out.println(auth.getDetails());
+		} catch (Exception e) {
+			System.out.println("bp7");
+			e.printStackTrace();
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
+		System.out.println("bp3");
+
 
 		final UserDetails userDetails
 				= usersDetailsService.loadUserByUsername(jwtRequest.getUsername());
+		System.out.println("bp4");
 
 		final String token =
 				jwtUtility.generateToken(userDetails);
+		System.out.println("bp5");
 
 		return new JWTResponse(token);
 	}

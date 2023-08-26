@@ -4,21 +4,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 //import java.util.Optional;
 
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.wellsfargo.app.entities.UsersDetails;
 import com.wellsfargo.app.helper.LoginHelper;
 import com.wellsfargo.app.repositories.UsersDetailsRepo;
 
+import java.util.ArrayList;
+
 @Service
 public class UsersDetailsService implements UserDetailsService {
 	@Autowired
 	private UsersDetailsRepo usersDetailsRepo;
 
-
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public String validateUser(LoginHelper user) {
 		// TODO Auto-generated method stub
@@ -39,7 +44,7 @@ public class UsersDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		//logic to get the user from the Database
-		return null;
+		return new User("admin","password",new ArrayList<>());
 
 	}
 }

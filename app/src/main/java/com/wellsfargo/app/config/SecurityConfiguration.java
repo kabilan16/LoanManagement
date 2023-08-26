@@ -33,17 +33,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
+//        http.csrf()
+//                .disable()
+//                .authorizeRequests()
+//                .antMatchers("/authenticate")
+//                .permitAll()
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http
+                .cors().and()
+                .csrf().disable()
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+
                 .authorizeRequests()
-                .antMatchers("/authenticate")
+                //.antMatchers("/hellouser").hasAnyRole("USER","ADMIN")
+                .antMatchers("/authenticate"
+                        //        ,"/transaction/**","/beneficiary/**","/account/**"
+                )
                 .permitAll()
-                .anyRequest()
-                .authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        //.and().httpBasic()
+        ;
     }
 }

@@ -8,12 +8,12 @@ function AdminDashboard() {
   return (
     <div>
       <center>
-        <h3 className="pagetitle">Admin Dashboard</h3>
+        <h3 className="pagetitle" style={{marginTop:20}}>Admin Dashboard</h3>
       </center>
 
       <Carousel>
         <Carousel.Item>
-          <Card>
+          <Card style={{width:"15em", height:"12em"}}>
             <Card.Body>
               <Card.Title>Customer Data Management</Card.Title>
               <Card.Text>Adding new users/customers details</Card.Text>
@@ -24,7 +24,7 @@ function AdminDashboard() {
           </Card>
         </Carousel.Item>
         <Carousel.Item>
-          <Card>
+          <Card style={{width:"15em", height:"12em"}}>
             <Card.Body>
               <Card.Title>Customer Data Management</Card.Title>
               <Card.Text>
@@ -37,7 +37,7 @@ function AdminDashboard() {
           </Card>
         </Carousel.Item>
         <Carousel.Item>
-          <Card>
+          <Card style={{width:"15em", height:"12em"}}>
             <Card.Body>
               <Card.Title>Loan Card Management</Card.Title>
               <Card.Text>Add details for new Loan cards</Card.Text>
@@ -48,7 +48,7 @@ function AdminDashboard() {
           </Card>
         </Carousel.Item>
         <Carousel.Item>
-          <Card>
+          <Card style={{width:"15em", height:"12em"}}>
             <Card.Body>
               <Card.Title>Loan Card Management</Card.Title>
               <Card.Text>Edit details for existing Loan cards</Card.Text>
@@ -70,7 +70,7 @@ function AdminDashboard() {
           </Card>
         </Carousel.Item>
         <Carousel.Item>
-          <Card>
+          <Card >
             <Card.Body>
               <Card.Title>Items Management</Card.Title>
               <Card.Text>Edit details of existing items</Card.Text>

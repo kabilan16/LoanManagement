@@ -74,7 +74,7 @@ function AddItems() {
               >
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25}} >
                       <label htmlFor="username" className="form-label">
                         Item ID
                       </label>
@@ -95,7 +95,7 @@ function AddItems() {
                         </div>
                       )}
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3"style={{marginRight:25}} >
                       <label htmlFor="itemDesc" className="form-label">
                         Item Description
                       </label>
@@ -152,7 +152,7 @@ function AddItems() {
                         </select>
                       </label>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25}}>
                       <label>
                         Issue Status
                         <select  name="issueStatus"
@@ -164,7 +164,7 @@ function AddItems() {
                                        </select>
                       </label>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25}}>
                       <label htmlFor="username" className="form-label">
                         Item Cost
                       </label>

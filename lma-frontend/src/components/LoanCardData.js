@@ -68,7 +68,7 @@ function LoanCardData() {
               >
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25}}>
                       <label htmlFor="username" className="form-label">
                         Loan ID
                       </label>
@@ -116,7 +116,7 @@ function LoanCardData() {
                       </label>
                     </div> */}
                     
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25}}>
                       <label htmlFor="username" className="form-label">
                         Loan Duration In Months
                       </label>

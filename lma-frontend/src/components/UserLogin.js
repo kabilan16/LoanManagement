@@ -61,15 +61,15 @@ function UserLogin() {
           <h4 className="pagetitle">User Login</h4>
         </center>
         <div className="container mt-5">
-          <div className="row justify-content-center">
-            <div className="col-md-6">
+          <div className="row justify-content-center" >
+            <div className="col-md-5">
               <div
                 className="card shadow p-4"
-                style={{ backgroundColor: "#f8f9fa", borderRadius: "25px" }}
+                style={{ backgroundColor: "#f8f9fa", borderRadius: "25p"}}
               >
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:20}}>
                       <label htmlFor="username" className="form-label">
                         User ID
                       </label>
@@ -88,7 +88,7 @@ function UserLogin() {
                         </div>
                       )}
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3"style={{marginRight:20}}>
                       <label htmlFor="password" className="form-label">
                         User Password
                       </label>

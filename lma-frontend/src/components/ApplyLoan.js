@@ -39,7 +39,7 @@ function ApplyLoan() {
               >
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25, marginLeft:25}}>
                       <label htmlFor="username" className="form-label">
                         Employee ID
                       </label>
@@ -59,7 +59,7 @@ function ApplyLoan() {
                         </div>
                       )}
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25, marginLeft:25}}>
                       <label htmlFor="itemDesc" className="form-label">
                         Item Description
                       </label>
@@ -75,7 +75,7 @@ function ApplyLoan() {
                       />
                       {/* {errors.username && <div className="invalid-feedback">{errors.username}</div>} */}
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25, marginLeft:25}}>
                       <label>
                         Item Make
                         <select>
@@ -86,7 +86,7 @@ function ApplyLoan() {
                         </select>
                       </label>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25, marginLeft:25}}>
                       <label>
                         Item Category
                         <select>
@@ -97,7 +97,7 @@ function ApplyLoan() {
                         </select>
                       </label>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25, marginLeft:25}}>
                       <label>
                         Item Value
                         <input

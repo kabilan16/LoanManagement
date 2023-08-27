@@ -74,7 +74,7 @@ function AddCustomer() {
               >
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25}}>
                       <label htmlFor="username" className="form-label">
                         Employee ID
                       </label>
@@ -95,7 +95,7 @@ function AddCustomer() {
                         </div>
                       )}
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3"style={{marginRight:25}}>
                       <label htmlFor="itemDesc" className="form-label">
                         Employee Name
                       </label>

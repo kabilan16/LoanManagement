@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { Button, Table } from "react-bootstrap";
 import { Modal, Paper } from '@mui/material';
 
+import { Link } from "react-router-dom";
+
+
 function LoanDataEdit() {
   const [employees, setEmployees] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -91,7 +94,7 @@ function LoanDataEdit() {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <div>
+          {/* <div>
             <label>Loan ID:</label>
             <input
               type="number"
@@ -117,7 +120,7 @@ function LoanDataEdit() {
                         </select>
                       </label>
       
-          </div>
+          </div> */}
           <div>
             <label>Loan Duration in months:</label>
             <input
@@ -194,6 +197,10 @@ function LoanDataEdit() {
         </div>
       </Modal>
       {isDeleting && <div>Deleting...</div>}
+      
+<Link to="/adashboard">
+                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+              </Link>
     </div>
   );
 }

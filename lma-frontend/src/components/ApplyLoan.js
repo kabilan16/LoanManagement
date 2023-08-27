@@ -2,6 +2,8 @@ import "../LoginPage.css";
 import axios from 'axios';
 import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
+import {Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 function ApplyLoan() {
   const location = useLocation();
   const passedProp = location.state && location.state.passedProp;
@@ -217,6 +219,10 @@ function ApplyLoan() {
             </div>
           </div>
         </div>
+        {console.log("hmm:",passedProp)}
+              <Link to="/udashboard" state={{ passedProp }}>
+                <center><Button variant="primary">Go back to User Dashboard</Button></center>
+              </Link>
       </div>
     </div>
   );

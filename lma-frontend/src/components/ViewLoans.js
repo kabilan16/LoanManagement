@@ -2,6 +2,8 @@ import "../LoginPage.css";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import {Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { Table } from "react-bootstrap";
 function ViewLoans() {
@@ -97,6 +99,10 @@ employees.map((loan, index) => {
           {/* Add more rows as needed */}
         </tbody>
       </Table>
+                {console.log("hmm:",passedProp)}
+              <Link to="/udashboard" state={{ passedProp }}>
+                <center><Button variant="primary">Go back to User Dashboard</Button></center>
+              </Link>
     </div>
   );
 }

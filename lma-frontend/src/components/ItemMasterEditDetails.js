@@ -5,6 +5,9 @@ import React, { useState, useEffect } from 'react';
 import { Button, Table } from "react-bootstrap";
 import { Modal, Paper } from '@mui/material';
 
+import { Link } from "react-router-dom";
+
+
 function ItemMasterEditDetails() {
   const [employees, setEmployees] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -36,7 +39,7 @@ function ItemMasterEditDetails() {
     try {
       await axios.put(`http://localhost:8081/updateItem`, editedEmployee);
       const updatedEmployees = employees.map(emp =>
-        emp.itemID === editedEmployee.itemId ? editedEmployee : emp
+        emp.itemId === editedEmployee.itemId ? editedEmployee : emp
       );
       setEmployees(updatedEmployees);
       setIsEditing(false);
@@ -92,7 +95,7 @@ function ItemMasterEditDetails() {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <div>
+          {/* <div>
             <label>Item ID:</label>
             <input
               type="number"
@@ -111,7 +114,7 @@ function ItemMasterEditDetails() {
               onChange={handleInputChange}
               readOnly // To prevent editing the ID
             />
-          </div>
+          </div> */}
           <div>
           <label>
                       Issue Status
@@ -126,7 +129,7 @@ function ItemMasterEditDetails() {
           </select>
           </label> 
           </div>
-          <div>
+          {/* <div>
           <label>
                         Item Make
                         <select 
@@ -155,7 +158,7 @@ function ItemMasterEditDetails() {
 
                         </select>
                       </label>
-          </div>
+          </div> */}
           <div>
           <label >
                         Item Cost
@@ -243,6 +246,10 @@ function ItemMasterEditDetails() {
         </div>
       </Modal>
       {isDeleting && <div>Deleting...</div>}
+      
+<Link to="/adashboard">
+                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+              </Link>
     </div>
   );
 }

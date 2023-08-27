@@ -14,12 +14,17 @@ function ItemMasterEditDetails() {
   const [editEmployee, setEditEmployee] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deletedEmployeeId, setDeletedEmployeeId] = useState(null);
-
+  const storedToken = localStorage.getItem('jwtToken');
+  const headers = {
+    'Authorization': `Bearer ${storedToken}`,
+    'Content-Type': 'application/json',
+    // Other headers as needed
+  };
   useEffect(() => {
     
     const delay = 500;
     setTimeout(() => {
-      axios.get('http://localhost:8081/getAllItem')
+      axios.get('http://localhost:8081/getAllItem',{headers})
         .then(response => {
           console.log('Fetched data:', response.data);
           setEmployees(response.data);

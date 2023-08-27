@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function UserLogin() {
   let passedProp='hmm';
   const initialFormData={
-    employeeId: '',
+    username: '',
     password: ''
   }
   const [reqSuccess, setReqSuccess] = useState(false);
@@ -14,7 +14,7 @@ function UserLogin() {
   const [reqFail, setReqFail] = useState(false);
   const [postResponse, setPostResponse]=useState('');
   const [errorMessages, setErrorMessages] = useState({
-    employeeId: '',
+    username: '',
     password: ''});
 
   const navigate = useNavigate();
@@ -50,19 +50,25 @@ function UserLogin() {
     
     try {
       console.log("form data:", formData);
-      passedProp=formData.employeeId;
+      passedProp=formData.username;
       console.log(passedProp);
-      const response = await axios.post('http://localhost:8081/validateUser', formData);
+      const response = await axios.post('http://localhost:8081/AdminLogin/authenticate', formData);
       console.log('Response:', response.data);
+      
+      let jwtToken = response.data.jwtToken; // Assuming the response has a 'token' field
+    // Store the token in localStorage
+      console.log("jwtToken: ",jwtToken);
+      localStorage.setItem('jwtToken', jwtToken);
       setPostResponse(response.data);
       setFormData(initialFormData);
       setReqSuccess(true);
+      navigate("/udashboard", { state: { passedProp: passedProp } });
       // Handle success or do something with the response
-      if (response.data === "credentials are correct" || response.data === "Not A User") {
-              navigate("/udashboard", { state: { passedProp: passedProp } });
-            } else {
-              setErrorMessages({ login: "Invalid username or password" });
-            }
+      // if (response.data === "credentials are correct" || response.data === "Not A User") {
+      //         navigate("/udashboard", { state: { passedProp: passedProp } });
+      //       } else {
+      //         setErrorMessages({ login: "Invalid username or password" });
+      //       }
     } catch (error) {
       console.error('Error:', error);
       setReqFail(true);
@@ -139,13 +145,13 @@ function UserLogin() {
                           errorMessages.username && "is-invalid"
                         }`}
                         type="number"
-                        name="employeeId"
-                        value={formData.employeeId}
+                        name="username"
+                        value={formData.username}
                         onChange={handleInputChange}
                       />
                       {errorMessages.employeeId && (
                         <div className="invalid-feedback">
-                          {errorMessages.employeeId}
+                          {errorMessages.username}
                         </div>
                       )}
                     </div>
@@ -181,7 +187,7 @@ function UserLogin() {
                         </button>
                       </center>
                     </div>
-                    <p>{postResponse}</p>
+                    {/* <p>{postResponse}</p> */}
                   </form>
                 </div>
               </div>

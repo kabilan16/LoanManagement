@@ -14,12 +14,17 @@ function CustomerData() {
   const [editEmployee, setEditEmployee] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deletedEmployeeId, setDeletedEmployeeId] = useState(null);
-
+  const storedToken = localStorage.getItem('jwtToken');
+  const headers = {
+    'Authorization': `Bearer ${storedToken}`,
+    'Content-Type': 'application/json',
+    // Other headers as needed
+  };
   useEffect(() => {
     
     const delay = 500;
     setTimeout(() => {
-      axios.get('http://localhost:8081/getAllEmployee')
+      axios.get('http://localhost:8081/getAllEmployee',{headers})
         .then(response => {
           console.log('Fetched data:', response.data);
           setEmployees(response.data);
@@ -37,7 +42,7 @@ function CustomerData() {
 
   const handleEditSubmit = async (editedEmployee) => {
     try {
-      await axios.put(`http://localhost:8081/editEmployee`, editedEmployee);
+      await axios.put(`http://localhost:8081/editEmployee`, editedEmployee, {headers});
       const updatedEmployees = employees.map(emp =>
         emp.employeeId === editedEmployee.employeeId ? editedEmployee : emp
       );
@@ -57,7 +62,7 @@ function CustomerData() {
     setIsDeleting(true);
     setDeletedEmployeeId(employeeId);
     try {
-      await axios.delete(`http://localhost:8081/deleteEmployee/${employeeId}`);
+      await axios.delete(`http://localhost:8081/deleteEmployee/${employeeId}`, {headers});
       setEmployees(employees.filter(emp => emp.employeeId !== employeeId));
       // Simulate a refresh effect for 700ms
       setTimeout(() => {
@@ -84,7 +89,7 @@ function CustomerData() {
       event.preventDefault();
   
       try {
-        await axios.put(`http://localhost:8081/editEmployee`, formData);
+        await axios.put(`http://localhost:8081/editEmployee`, formData, {headers});
         onSubmit(formData); // Notify the parent component about the update
         onClose(); // Close the edit form
       } catch (error) {

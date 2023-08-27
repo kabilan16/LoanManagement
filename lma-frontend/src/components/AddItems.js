@@ -54,10 +54,15 @@ function AddItems() {
       console.log("inside handle submit4");
       return;
     }
-    
+    const storedToken = localStorage.getItem('jwtToken');
+  const headers = {
+    'Authorization': `Bearer ${storedToken}`,
+    'Content-Type': 'application/json',
+    // Other headers as needed
+  };
     try {
       console.log("form data:", formData);
-      const response = await axios.post('http://localhost:8081/addItems', formData);
+      const response = await axios.post('http://localhost:8081/addItems', formData, {headers});
       console.log('Response:', response.data);
       setFormData(initialFormData);
       setReqSuccess(true);

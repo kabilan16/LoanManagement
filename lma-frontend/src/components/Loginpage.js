@@ -146,7 +146,7 @@ import { useNavigate } from "react-router-dom";
 function LoginPage() {
   
   const initialFormData={
-    employeeId: '',
+    username: '',
     password: ''
   }
   const [reqSuccess, setReqSuccess] = useState(false);
@@ -154,7 +154,7 @@ function LoginPage() {
   const [reqFail, setReqFail] = useState(false);
   const [postResponse, setPostResponse]=useState('');
   const [errorMessages, setErrorMessages] = useState({
-    employeeId: '',
+    username: '',
     password: ''});
 
   const navigate = useNavigate();
@@ -190,17 +190,22 @@ function LoginPage() {
     
     try {
       console.log("form data:", formData);
-      const response = await axios.post('http://localhost:8081/validateUser', formData);
+      const response = await axios.post('http://localhost:8081/UserLogin/authenticate', formData);
       console.log('Response:', response.data);
+      let jwtToken = response.data.jwtToken; // Assuming the response has a 'token' field
+    // Store the token in localStorage
+      console.log("jwtToken: ",jwtToken);
+      localStorage.setItem('jwtToken', jwtToken);
       setPostResponse(response.data);
       setFormData(initialFormData);
       setReqSuccess(true);
+      navigate("/adashboard");
       // Handle success or do something with the response
-      if (response.data === "credentials are correct" ) {
-              navigate("/adashboard");
-            } else {
-              setErrorMessages({ login: "Invalid username or password" });
-            }
+      // if (response.data === "credentials are correct" ) {
+      //         navigate("/adashboard");
+      //       } else {
+      //         setErrorMessages({ login: "Invalid username or password" });
+      //       }
     } catch (error) {
       console.error('Error:', error);
       setReqFail(true);
@@ -277,13 +282,13 @@ function LoginPage() {
                           errorMessages.username && "is-invalid"
                         }`}
                         type="number"
-                        name="employeeId"
-                        value={formData.employeeId}
+                        name="username"
+                        value={formData.username}
                         onChange={handleInputChange}
                       />
                       {errorMessages.employeeId && (
                         <div className="invalid-feedback">
-                          {errorMessages.employeeId}
+                          {errorMessages.username}
                         </div>
                       )}
                     </div>
@@ -319,7 +324,7 @@ function LoginPage() {
                         </button>
                       </center>
                     </div>
-                    <p>{postResponse}</p>
+                    {/* <p>{postResponse}</p> */}
                   </form>
                 </div>
               </div>

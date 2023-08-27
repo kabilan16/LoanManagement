@@ -14,11 +14,17 @@ function ViewLoans() {
   let prevEmployeeId = null;
   let prevDesignation = null;
   let prevDepartment = null;
+  const storedToken = localStorage.getItem('jwtToken');
+  const headers = {
+    'Authorization': `Bearer ${storedToken}`,
+    'Content-Type': 'application/json',
+    // Other headers as needed
+  };
   useEffect(() => {
     
     const delay = 500;
     setTimeout(() => {
-      axios.get(`http://localhost:8081/getAllLoanDetails/${passedProp}`)
+      axios.get(`http://localhost:8081/getAllLoanDetails/${passedProp}`, {headers})
         .then(response => {
           console.log('Fetched data:', response.data);
           setEmployees(response.data);

@@ -26,6 +26,12 @@ function ApplyLoan() {
     itemCategory: '',
     itemValue: '',
   });
+  const storedToken = localStorage.getItem('jwtToken');
+  const headers = {
+    'Authorization': `Bearer ${storedToken}`,
+    'Content-Type': 'application/json',
+    // Other headers as needed
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -59,7 +65,7 @@ function ApplyLoan() {
     
     try {
       console.log("form data:", formData);
-      const response = await axios.post('http://localhost:8081/applyForLoan', formData);
+      const response = await axios.post('http://localhost:8081/applyForLoan', formData , {headers});
       console.log('Response:', response.data);
       setPostResponse(response.data);
       setFormData(initialFormData);

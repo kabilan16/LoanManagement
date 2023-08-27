@@ -4,6 +4,9 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Button, Table } from "react-bootstrap";
 import { Modal, Paper } from '@mui/material';
+
+import { Link } from "react-router-dom";
+
 function CustomerData() {
 
   const [employees, setEmployees] = useState([]);
@@ -92,7 +95,7 @@ function CustomerData() {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <div>
+          {/* <div>
             <label>Employee ID:</label>
             <input
               type="number"
@@ -110,7 +113,7 @@ function CustomerData() {
               value={formData.employeeName}
               onChange={handleInputChange}
             />
-          </div>
+          </div> */}
           <div>
             <label>Designation:</label>
             <input
@@ -120,7 +123,7 @@ function CustomerData() {
               onChange={handleInputChange}
             />
           </div>
-          <div>
+          {/* <div>
             <label>Department:</label>
             <input
               type="text"
@@ -146,7 +149,7 @@ function CustomerData() {
               value={formData.dateOfJoining}
               onChange={handleInputChange}
             />
-          </div>
+          </div> */}
           <br></br>
           <button type="submit" style={{marginRight: "5px"}}>Submit</button>
           <button onClick={onClose}>Cancel</button>
@@ -228,6 +231,9 @@ function CustomerData() {
       </Modal>
       {isDeleting && <div>Deleting...</div>}
       
+<Link to="/adashboard">
+                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+              </Link>
     </div>
   );
 }

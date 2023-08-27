@@ -4,6 +4,8 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Table } from "react-bootstrap";
 import { useLocation } from 'react-router-dom';
+import {Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 function ViewItems() {
   const [employees, setEmployees] = useState([]);
   const location = useLocation();
@@ -100,6 +102,10 @@ employees.map((loan, index) => {
           {/* Add more rows as needed */}
         </tbody>
       </Table>
+      {console.log("hmm:",passedProp)}
+              <Link to="/udashboard" state={{ passedProp }}>
+                <center><Button variant="primary">Go back to User Dashboard</Button></center>
+              </Link>
     </div>
   );
 }

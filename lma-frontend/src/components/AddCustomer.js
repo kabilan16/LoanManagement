@@ -1,6 +1,8 @@
 import "../LoginPage.css";
 import React, { useState } from "react";
 import axios from 'axios';
+import {Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 function AddCustomer() {
   const initialFormData={
     employeeId: '',
@@ -193,10 +195,15 @@ function AddCustomer() {
                     {reqSuccess && <center><div className="successMsg">User is added successfully</div></center>}
                     {reqFail && <center><div className="failMsg">Error occured. Could not add user.</div></center>}
                   </form>
+                  
                 </div>
+                
               </div>
             </div>
           </div>
+          <Link to="/adashboard">
+                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+              </Link>
         </div>
       </div>
     </div>

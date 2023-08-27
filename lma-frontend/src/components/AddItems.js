@@ -1,6 +1,9 @@
 import "../LoginPage.css";
 import React, { useState } from "react";
 import axios from 'axios';
+import {Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 function AddItems() {
   const initialFormData={
     itemId: '',
@@ -212,6 +215,10 @@ function AddItems() {
               </div>
             </div>
           </div>
+          
+<Link to="/adashboard">
+                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+              </Link>
         </div>
       </div>
     </div>

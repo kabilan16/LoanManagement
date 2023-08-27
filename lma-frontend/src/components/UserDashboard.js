@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 function UserDashboard() {
   const location=useLocation();
-  const passedProp = location.state && location.state.passingProp;
+  const passedProp = location.state && location.state.passedProp;
   console.log("received data: ",passedProp);
   return (
     <div>
@@ -30,7 +30,7 @@ function UserDashboard() {
               <Card.Text>
                 Select the required products and apply for loan
               </Card.Text>
-              <Link to="/applyloan" state={{ passedProp }}>
+                            <Link to="/applyloan" state={{ passedProp }}>
                 <Button variant="primary">Apply Loan</Button>
               </Link>
             </Card.Body>

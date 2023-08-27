@@ -16,6 +16,7 @@ import com.wellsfargo.app.helper.LoginHelper;
 import com.wellsfargo.app.repositories.UsersDetailsRepo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Service
 public class UsersDetailsService implements UserDetailsService {
@@ -29,22 +30,32 @@ public class UsersDetailsService implements UserDetailsService {
 		// TODO Auto-generated method stub
 		int employeeId = user.getEmployeeId();
 		String password = user.getPassword();
-	
-		if(!usersDetailsRepo.existsById(employeeId))
-			return "Invalid User";
-		UsersDetails details = usersDetailsRepo.findById(employeeId).get();
+		System.out.println("eid: " + employeeId);
+		System.out.println("password: " + password);
+		if(!usersDetailsRepo.existsById(employeeId)){
+			System.out.println("Invalid User");
+			return "Invalid User";}
+		UsersDetails details = usersDetailsRepo.findById(Integer.valueOf(employeeId)).get();
 		if(password.equals(details.getPassword())&&!(details.getIsAdmin()))
 			return "credentials are correct";
 		else if(password.equals(details.getPassword())&&details.getIsAdmin())
 			return "Not A User";
+		System.out.println("Password is Incorrect");
 		return "Password is Incorrect";
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		UsersDetails user = usersDetailsRepo.findById(Integer.parseInt(username)).get();
 
-		//logic to get the user from the Database
-		return new User("admin","password",new ArrayList<>());
+//		String input = "abc***def";
+//		String[] parts = input.split("\\*\\*\\*");
+//		System.out.println(Arrays.toString(parts));
+//		System.out.println("payload:"+ payload);
+//		String[] preList = payload.split("\\*\\*\\*");
+//		//logic to get the user from the Database
+//		System.out.println(Arrays.toString(preList));
+		return new User(String.valueOf( user.getEmployeeId()), user.getPassword(), new ArrayList<>());
 
 	}
 }

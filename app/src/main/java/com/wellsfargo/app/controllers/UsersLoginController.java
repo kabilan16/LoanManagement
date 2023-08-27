@@ -40,7 +40,17 @@ public class UsersLoginController {
 	public JWTResponse authenticate(@RequestBody JWTRequest jwtRequest) throws Exception{
 
 		try {
+			//check if user exists in db
+
+			if(!usersDetailsService.validateUser(new LoginHelper(Integer.parseInt(jwtRequest.getUsername()),jwtRequest.getPassword())).equals("credentials are correct")){
+				return null;
+			};
+
+
+
 			System.out.println("bp1");
+			System.out.println(jwtRequest.getUsername());
+			System.out.println(jwtRequest.getPassword());
 			Authentication auth = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(
 							jwtRequest.getUsername(),
@@ -56,11 +66,12 @@ public class UsersLoginController {
 			e.printStackTrace();
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
-		System.out.println("bp3");
-
+//		System.out.println("bp3");
+//		System.out.println("ULC getPAss"+ jwtRequest.getPassword());
+		String consolidated = jwtRequest.getUsername();
 
 		final UserDetails userDetails
-				= usersDetailsService.loadUserByUsername(jwtRequest.getUsername());
+				= usersDetailsService.loadUserByUsername(consolidated);
 		System.out.println("bp4");
 
 		final String token =

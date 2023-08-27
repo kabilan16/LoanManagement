@@ -36,10 +36,14 @@ public class UsersDetailsService implements UserDetailsService {
 			System.out.println("Invalid User");
 			return "Invalid User";}
 		UsersDetails details = usersDetailsRepo.findById(Integer.valueOf(employeeId)).get();
-		if(password.equals(details.getPassword())&&!(details.getIsAdmin()))
+		if(password.equals(details.getPassword())&&!(details.getIsAdmin())) {
+			System.out.println("Correct credentials");
 			return "credentials are correct";
-		else if(password.equals(details.getPassword())&&details.getIsAdmin())
+		}
+		else if(password.equals(details.getPassword())&&details.getIsAdmin()) {
+			System.out.println("Not a User, but an Admin");
 			return "Not A User";
+		}
 		System.out.println("Password is Incorrect");
 		return "Password is Incorrect";
 	}

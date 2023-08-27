@@ -27,8 +27,8 @@ public class JwtFilter extends OncePerRequestFilter {
     @Autowired
     private UsersDetailsService usersDetailsService;
 
-    @Autowired
-    private AdminDetailsService adminDetailsService;
+//    @Autowired
+//    private AdminDetailsService adminDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
@@ -61,7 +61,5 @@ public class JwtFilter extends OncePerRequestFilter {
 
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);
-
-
     }
 }

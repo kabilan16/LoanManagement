@@ -23,10 +23,10 @@ public class AdminLoginController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	@Autowired
-	AdminDetailsService adminLoginService;
+	AdminDetailsService adminDetailsService;
 	@PostMapping("/validateAdmin") 
 	public ResponseEntity<String> validateUserDetails(@RequestBody LoginHelper user) {
-		return ResponseEntity.ok(adminLoginService.validateUser(user));
+		return ResponseEntity.ok(adminDetailsService.validateUser(user));
 	}
 	@GetMapping("/admin")
 	public String home() {
@@ -36,7 +36,17 @@ public class AdminLoginController {
 	public JWTResponse authenticate(@RequestBody JWTRequest jwtRequest) throws Exception{
 
 		try {
+			//check if admin exists in db
+
+			if(!adminDetailsService.validateUser(new LoginHelper(Integer.parseInt(jwtRequest.getUsername()),jwtRequest.getPassword())).equals("credentials are correct")){
+				return null;
+			};
+
+
+
 			System.out.println("bp1");
+			System.out.println(jwtRequest.getUsername());
+			System.out.println(jwtRequest.getPassword());
 			Authentication auth = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(
 							jwtRequest.getUsername(),
@@ -52,11 +62,12 @@ public class AdminLoginController {
 			e.printStackTrace();
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
-		System.out.println("bp3");
-
+//		System.out.println("bp3");
+//		System.out.println("ULC getPAss"+ jwtRequest.getPassword());
+		String consolidated = jwtRequest.getUsername();
 
 		final UserDetails userDetails
-				= adminLoginService.loadUserByUsername(jwtRequest.getUsername());
+				= adminDetailsService.loadUserByUsername(consolidated);
 		System.out.println("bp4");
 
 		final String token =

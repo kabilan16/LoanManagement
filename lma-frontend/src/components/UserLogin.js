@@ -134,14 +134,14 @@ function UserLogin() {
         </center>
         <div className="container mt-5">
           <div className="row justify-content-center">
-            <div className="col-md-6">
+            <div className="col-md-5">
               <div
                 className="card shadow p-4"
                 style={{ backgroundColor: "#f8f9fa", borderRadius: "25px" }}
               >
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25}}>
                       <label htmlFor="username" className="form-label">
                         User ID
                       </label>
@@ -161,7 +161,7 @@ function UserLogin() {
                         </div>
                       )}
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25}}>
                       <label htmlFor="password" className="form-label">
                         User Password
                       </label>

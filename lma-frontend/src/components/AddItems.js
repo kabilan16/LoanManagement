@@ -93,14 +93,14 @@ const navigate = useNavigate();
         </center>
         <div className="container mt-5">
           <div className="row justify-content-center">
-            <div className="col-md-6">
+            <div className="col-md-5">
               <div
                 className="card shadow p-4"
                 style={{ backgroundColor: "#f8f9fa", borderRadius: "25px" }}
               >
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginLeft:15, marginRight:55}}>
                       <label htmlFor="username" className="form-label">
                         Item ID
                       </label>
@@ -121,7 +121,7 @@ const navigate = useNavigate();
                         </div>
                       )}
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginLeft:15, marginRight:55}}>
                       <label htmlFor="itemDesc" className="form-label">
                         Item Description
                       </label>
@@ -190,7 +190,7 @@ const navigate = useNavigate();
                                        </select>
                       </label>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginLeft:15, marginRight:55}}>
                       <label htmlFor="username" className="form-label">
                         Item Cost
                       </label>
@@ -232,8 +232,8 @@ const navigate = useNavigate();
             </div>
           </div>
           
-<Link to="/adashboard">
-                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+<Link to="/adashboard" /*style={{textDecorationColor:"black"}}*/>
+                <center><Button variant="primary" style={{marginTop:30, backgroundColor:"#f8f9fa", color:"black", padding:"12px"}}>Go to Admin Dashboard</Button></center>
               </Link>
         </div>
       </div>

@@ -98,14 +98,14 @@ const navigate = useNavigate();
         </center>
         <div className="container mt-5">
           <div className="row justify-content-center">
-            <div className="col-md-6">
+            <div className="col-md-5">
               <div
                 className="card shadow p-4"
                 style={{ backgroundColor: "#f8f9fa", borderRadius: "25px" }}
               >
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginLeft:15, marginRight:15}}>
                       {/* <label htmlFor="username" className="form-label">
                         Employee ID
                       </label>
@@ -138,7 +138,7 @@ const navigate = useNavigate();
                         </select>
                       </label>
                     </div>
-                    <div className="mb-3" style={{marginRight:25, marginLeft:25}}>
+                    <div className="mb-3" style={{marginRight:65, marginLeft:25}}>
                       <label htmlFor="itemDesc" className="form-label">
                         Item Description
                       </label>
@@ -156,7 +156,7 @@ const navigate = useNavigate();
                       />
                       {errorMessages.itemDescription}
                     </div>
-                    <div className="mb-3" style={{marginRight:25, marginLeft:25}}>
+                    <div className="mb-3" style={{marginRight:15, marginLeft:15}}>
                       <label>
                         Item Make
                         <select 
@@ -181,7 +181,7 @@ const navigate = useNavigate();
                         </select>
                       </label>
                     </div> */}
-                    <div className="mb-3">
+                    <div className="mb-3"  style={{marginLeft:15, marginRight:"10px"}}>
                       <label>
                         Item Category
                         <select  name="itemCategory"
@@ -195,8 +195,8 @@ const navigate = useNavigate();
                         </select>
                       </label>
                     </div>
-                    <div className="mb-3" style={{marginRight:25, marginLeft:25}}>
-                      <label>
+                    <div className="mb-3" style={{marginRight:"10px", marginLeft:"5px"}}>
+                      <label /*style={{marginLeft:"5px"}}*/>
                         Item Value
                         <input
                           type="number"
@@ -238,7 +238,7 @@ const navigate = useNavigate();
         </div>
         {console.log("hmm:",passedProp)}
               <Link to="/udashboard" state={{ passedProp }}>
-                <center><Button variant="primary">Go back to User Dashboard</Button></center>
+                <center><Button variant="primary" style={{marginTop:30, backgroundColor:"#f8f9fa", color:"black", padding:"12px"}}>Go back to User Dashboard</Button></center>
               </Link>
       </div>
     </div>

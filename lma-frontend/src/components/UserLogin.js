@@ -62,7 +62,13 @@ function UserLogin() {
       setPostResponse(response.data);
       setFormData(initialFormData);
       setReqSuccess(true);
+      if(jwtToken !== null && jwtToken !== undefined)
+      {
       navigate("/udashboard", { state: { passedProp: passedProp } });
+      }
+      else{
+        setReqFail(true);
+      }
       // Handle success or do something with the response
       // if (response.data === "credentials are correct" || response.data === "Not A User") {
       //         navigate("/udashboard", { state: { passedProp: passedProp } });
@@ -188,6 +194,7 @@ function UserLogin() {
                       </center>
                     </div>
                     {/* <p>{postResponse}</p> */}
+                    {reqFail && <p>Invalid Credentials</p>}
                   </form>
                 </div>
               </div>

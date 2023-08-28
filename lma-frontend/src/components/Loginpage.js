@@ -199,7 +199,14 @@ function LoginPage() {
       setPostResponse(response.data);
       setFormData(initialFormData);
       setReqSuccess(true);
+      if(jwtToken !== null && jwtToken !== undefined)
+      {
       navigate("/adashboard");
+      }
+      else{
+        setReqFail(true);
+      }
+      
       // Handle success or do something with the response
       // if (response.data === "credentials are correct" ) {
       //         navigate("/adashboard");
@@ -325,6 +332,7 @@ function LoginPage() {
                       </center>
                     </div>
                     {/* <p>{postResponse}</p> */}
+                    {reqFail && <p>Invalid Credentials</p>}
                   </form>
                 </div>
               </div>

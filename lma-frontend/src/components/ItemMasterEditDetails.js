@@ -5,18 +5,26 @@ import React, { useState, useEffect } from 'react';
 import { Button, Table } from "react-bootstrap";
 import { Modal, Paper } from '@mui/material';
 
-function LoanDataEdit() {
+import { Link } from "react-router-dom";
+
+
+function ItemMasterEditDetails() {
   const [employees, setEmployees] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editEmployee, setEditEmployee] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deletedEmployeeId, setDeletedEmployeeId] = useState(null);
-
+  const storedToken = localStorage.getItem('jwtToken');
+  const headers = {
+    'Authorization': `Bearer ${storedToken}`,
+    'Content-Type': 'application/json',
+    // Other headers as needed
+  };
   useEffect(() => {
     
     const delay = 500;
     setTimeout(() => {
-      axios.get('http://localhost:8081/getAllItem')
+      axios.get('http://localhost:8081/getAllItem',{headers})
         .then(response => {
           console.log('Fetched data:', response.data);
           setEmployees(response.data);
@@ -36,7 +44,7 @@ function LoanDataEdit() {
     try {
       await axios.put(`http://localhost:8081/updateItem`, editedEmployee);
       const updatedEmployees = employees.map(emp =>
-        emp.itemID === editedEmployee.itemId ? editedEmployee : emp
+        emp.itemId === editedEmployee.itemId ? editedEmployee : emp
       );
       setEmployees(updatedEmployees);
       setIsEditing(false);
@@ -92,7 +100,7 @@ function LoanDataEdit() {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <div>
+          {/* <div>
             <label>Item ID:</label>
             <input
               type="number"
@@ -107,11 +115,11 @@ function LoanDataEdit() {
             <input
               type="text"
               name="itemDesc"
-              value={formData.itemDesc}
+              value={formData.itemDescription}
               onChange={handleInputChange}
               readOnly // To prevent editing the ID
             />
-          </div>
+          </div> */}
           <div>
           <label>
                       Issue Status
@@ -126,14 +134,48 @@ function LoanDataEdit() {
           </select>
           </label> 
           </div>
+          {/* <div>
+          <label>
+                        Item Make
+                        <select 
+                        name="itemMake"
+                        value={formData.itemMake}
+          onChange={handleInputChange}
+          
+          >
+            <option value="" selected disabled hidden>Select Item Make</option>
+                          <option value="Wooden">Wooden</option>
+                          <option value="Glass">Glass</option>
+                          <option value="Plastic">Plastic</option>
+                        </select>
+                      </label>
+          </div>
           <div>
-            <label>Loan Duration in months:</label>
-            <input
-              type="number"
-              name="durationInMonths"
-              value={formData.durationInMonths}
-              onChange={handleInputChange}
-            />
+          <label>
+                        Item Category
+                        <select  name="itemCategory"
+          value={formData.itemCategory}
+          onChange={handleInputChange}>
+            <option value="" selected disabled hidden>Select category</option>
+                          <option value="Furniture">Furniture</option>
+                          <option value="Crockery">Crockery</option>
+                          <option value="Stationary">Stationary</option>
+
+                        </select>
+                      </label>
+          </div> */}
+          <div>
+          <label >
+                        Item Cost
+                      </label>
+                      <input
+                        
+                        type="number"
+                        name="itemCost"
+                        value={formData.itemCost}
+                        onChange={handleInputChange}
+                       
+                      />
           </div>
                     <br></br>
           <button type="submit" style={{marginRight: "5px"}}>Submit</button>
@@ -142,8 +184,8 @@ function LoanDataEdit() {
       </div>
     );
   };
-} 
-function ItemMasterEditDetails() {
+
+
   return (
     <div>
       <center>
@@ -181,27 +223,38 @@ function ItemMasterEditDetails() {
             <td>5000</td>
             <td><Button className="button1">Edit</Button> <Button classNmae="button1">Delete</Button></td>
           </tr>
-          <tr>
-            <td>102</td>
-            <td>Dining Table</td>
-            <td>Y</td>
-            <td>Wooden</td>
-            <td>Furniture</td>
-            <td>15000</td>
-            <td><Button className="button1">Edit</Button> <Button className="button1">Delete</Button></td>
+          {employees.map(item => (
+            <tr>
+          <td key={item.itemId}>{item.itemId}</td>
+          <td key={item.itemId}>{item.itemDescription}</td>
+          <td key={item.itemId}>{item.issueStatus}</td>
+          <td key={item.itemId}>{item.itemMake}</td>
+          <td key={item.itemId}>{item.itemCategory}</td>
+          <td key={item.itemId}>{item.itemCost}</td>
+          
+          <td><Button className="button1" onClick={() => handleEdit(item)}>Edit</Button> 
+          <Button className="button1" onClick={() => handleDelete(item.itemId)}>Delete</Button></td>
           </tr>
-          <tr>
-            <td>103</td>
-            <td>Dining Set</td>
-            <td>N</td>
-            <td>Glass</td>
-            <td>Crockery</td>
-            <td>9000</td>
-            <td><Button className="button1">Edit</Button> <Button className="button1">Delete</Button></td>
-          </tr>
+        ))}
           {/* Add more rows as needed */}
         </tbody>
       </Table>
+      <Modal open={isEditing} onClose={() => setIsEditing(false)}>
+        <div className="modal-container">
+          <Paper elevation={3} className="modal-paper">
+            <EditForm
+              employee={editEmployee}
+              onClose={() => setIsEditing(false)}
+              onSubmit={handleEditSubmit}
+            />
+          </Paper>
+        </div>
+      </Modal>
+      {isDeleting && <div>Deleting...</div>}
+      
+<Link to="/adashboard">
+                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+              </Link>
     </div>
   );
 }

@@ -3,6 +3,9 @@ package com.wellsfargo.app.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,41 +18,30 @@ public class AdminDetails {
 	String password;
 	@Column(name="is_admin")
 	String isAdmin;
-	
-	
+
+	@OneToOne
+	@MapsId
+	@JoinColumn(name="employee_id")
+	private EmployeeMaster employee;
+	public AdminDetails() {
+
+	}
 	public AdminDetails (String password, String isAdmin) {
 		this.password = password;
 		this.isAdmin = isAdmin;
 	}
-
-
-	public int getAdminId() {
+	public int getEmployeeId() {
 		return adminId;
 	}
-
-
-	public void setAdminId(int adminId) {
-		this.adminId = adminId;
-	}
-
 
 	public String getPassword() {
 		return password;
 	}
-
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
 	public String getIsAdmin() {
 		return isAdmin;
 	}
-
-
-	public void setIsAdmin(String isAdmin) {
-		this.isAdmin = isAdmin;
+	public EmployeeMaster getEmployee() {
+		return employee;
 	}
-	
+
 }

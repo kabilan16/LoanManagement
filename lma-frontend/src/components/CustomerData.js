@@ -4,6 +4,9 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Button, Table } from "react-bootstrap";
 import { Modal, Paper } from '@mui/material';
+
+import { Link } from "react-router-dom";
+
 function CustomerData() {
 
   const [employees, setEmployees] = useState([]);
@@ -11,12 +14,17 @@ function CustomerData() {
   const [editEmployee, setEditEmployee] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deletedEmployeeId, setDeletedEmployeeId] = useState(null);
-
+  const storedToken = localStorage.getItem('jwtToken');
+  const headers = {
+    'Authorization': `Bearer ${storedToken}`,
+    'Content-Type': 'application/json',
+    // Other headers as needed
+  };
   useEffect(() => {
     
     const delay = 500;
     setTimeout(() => {
-      axios.get('http://localhost:8081/getAllEmployee')
+      axios.get('http://localhost:8081/getAllEmployee',{headers})
         .then(response => {
           console.log('Fetched data:', response.data);
           setEmployees(response.data);
@@ -34,7 +42,7 @@ function CustomerData() {
 
   const handleEditSubmit = async (editedEmployee) => {
     try {
-      await axios.put(`http://localhost:8081/editEmployee`, editedEmployee);
+      await axios.put(`http://localhost:8081/editEmployee`, editedEmployee, {headers});
       const updatedEmployees = employees.map(emp =>
         emp.employeeId === editedEmployee.employeeId ? editedEmployee : emp
       );
@@ -54,7 +62,7 @@ function CustomerData() {
     setIsDeleting(true);
     setDeletedEmployeeId(employeeId);
     try {
-      await axios.delete(`http://localhost:8081/deleteEmployee/${employeeId}`);
+      await axios.delete(`http://localhost:8081/deleteEmployee/${employeeId}`, {headers});
       setEmployees(employees.filter(emp => emp.employeeId !== employeeId));
       // Simulate a refresh effect for 700ms
       setTimeout(() => {
@@ -81,7 +89,7 @@ function CustomerData() {
       event.preventDefault();
   
       try {
-        await axios.put(`http://localhost:8081/editEmployee`, formData);
+        await axios.put(`http://localhost:8081/editEmployee`, formData, {headers});
         onSubmit(formData); // Notify the parent component about the update
         onClose(); // Close the edit form
       } catch (error) {
@@ -92,7 +100,7 @@ function CustomerData() {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <div>
+          {/* <div>
             <label>Employee ID:</label>
             <input
               type="number"
@@ -110,7 +118,7 @@ function CustomerData() {
               value={formData.employeeName}
               onChange={handleInputChange}
             />
-          </div>
+          </div> */}
           <div>
             <label>Designation:</label>
             <input
@@ -120,7 +128,7 @@ function CustomerData() {
               onChange={handleInputChange}
             />
           </div>
-          <div>
+          {/* <div>
             <label>Department:</label>
             <input
               type="text"
@@ -146,7 +154,7 @@ function CustomerData() {
               value={formData.dateOfJoining}
               onChange={handleInputChange}
             />
-          </div>
+          </div> */}
           <br></br>
           <button type="submit" style={{marginRight: "5px"}}>Submit</button>
           <button onClick={onClose}>Cancel</button>
@@ -228,6 +236,9 @@ function CustomerData() {
       </Modal>
       {isDeleting && <div>Deleting...</div>}
       
+<Link to="/adashboard">
+                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+              </Link>
     </div>
   );
 }

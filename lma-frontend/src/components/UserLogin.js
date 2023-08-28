@@ -1,57 +1,123 @@
 import "../LoginPage.css";
+import axios from 'axios';
 import React, { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 function UserLogin() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
+  let passedProp='hmm';
+  const initialFormData={
+    username: '',
+    password: ''
+  }
+  const [reqSuccess, setReqSuccess] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
+  const [reqFail, setReqFail] = useState(false);
+  const [postResponse, setPostResponse]=useState('');
+  const [errorMessages, setErrorMessages] = useState({
+    username: '',
+    password: ''});
 
   const navigate = useNavigate();
-
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-    clearError("username");
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    clearError("password");
-  };
-
-  const clearError = (fieldName) => {
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [fieldName]: "",
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setReqSuccess(false);
+    setReqFail(false);
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log("inside handle submit1");
 
-    const validationErrors = {};
-
-    if (username.trim() === "") {
-      validationErrors.username = "Username is required";
-    }
-
-    if (password.trim() === "") {
-      validationErrors.password = "Password is required";
-    }
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-    } else {
-      const predefinedUsers = {
-        "kabilan@gmail.com": "kabilan",
-        "kabilan@wellsfargo.com": "wellsfargo",
-      };
-
-      if (predefinedUsers[username] === password) {
-        navigate("/udashboard");
-      } else {
-        setErrors({ login: "Invalid username or password" });
+    // Validate form fields
+    const newErrorMessages = {};
+    for (const field in formData) {
+      if (formData[field] === '') {
+        newErrorMessages[field] = `${field} is required`;
       }
     }
+    console.log("inside handle submit2");
+    setErrorMessages(newErrorMessages);
+    console.log("inside handle submit3");
+    // If any errors, prevent the POST request
+    if (Object.keys(newErrorMessages).length > 0) {
+      console.log("inside handle submit4");
+      return;
+    }
+    
+    try {
+      console.log("form data:", formData);
+      passedProp=formData.username;
+      console.log(passedProp);
+      const response = await axios.post('http://localhost:8081/AdminLogin/authenticate', formData);
+      console.log('Response:', response.data);
+      
+      let jwtToken = response.data.jwtToken; // Assuming the response has a 'token' field
+    // Store the token in localStorage
+      console.log("jwtToken: ",jwtToken);
+      localStorage.setItem('jwtToken', jwtToken);
+      setPostResponse(response.data);
+      setFormData(initialFormData);
+      setReqSuccess(true);
+      navigate("/udashboard", { state: { passedProp: passedProp } });
+      // Handle success or do something with the response
+      // if (response.data === "credentials are correct" || response.data === "Not A User") {
+      //         navigate("/udashboard", { state: { passedProp: passedProp } });
+      //       } else {
+      //         setErrorMessages({ login: "Invalid username or password" });
+      //       }
+    } catch (error) {
+      console.error('Error:', error);
+      setReqFail(true);
+      // Handle error
+    }
+  // const handleUsernameChange = (e) => {
+  //   setUsername(e.target.value);
+  //   clearError("username");
+  // };
+
+  // const handlePasswordChange = (e) => {
+  //   setPassword(e.target.value);
+  //   clearError("password");
+  // };
+
+  // const clearError = (fieldName) => {
+  //   setErrors((prevErrors) => ({
+  //     ...prevErrors,
+  //     [fieldName]: "",
+  //   }));
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   const validationErrors = {};
+
+  //   if (username.trim() === "") {
+  //     validationErrors.username = "Username is required";
+  //   }
+
+  //   if (password.trim() === "") {
+  //     validationErrors.password = "Password is required";
+  //   }
+
+  //   if (Object.keys(validationErrors).length > 0) {
+  //     setErrors(validationErrors);
+  //   } else {
+  //     const predefinedUsers = {
+  //       "kabilan@gmail.com": "kabilan",
+  //       "kabilan@wellsfargo.com": "wellsfargo",
+  //     };
+
+  //     if (predefinedUsers[username] === password) {
+  //       navigate("/udashboard");
+  //     } else {
+  //       setErrors({ login: "Invalid username or password" });
+  //     }
+  //   }
   };
 
   return (
@@ -74,17 +140,18 @@ function UserLogin() {
                         User ID
                       </label>
                       <input
-                        type="text"
+                        
                         className={`form-control form-control-sm ${
-                          errors.username && "is-invalid"
+                          errorMessages.username && "is-invalid"
                         }`}
-                        id="username"
-                        value={username}
-                        onChange={handleUsernameChange}
+                        type="number"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleInputChange}
                       />
-                      {errors.username && (
+                      {errorMessages.employeeId && (
                         <div className="invalid-feedback">
-                          {errors.username}
+                          {errorMessages.username}
                         </div>
                       )}
                     </div>
@@ -95,19 +162,19 @@ function UserLogin() {
                       <input
                         type="password"
                         className={`form-control form-control-sm ${
-                          errors.password && "is-invalid"
+                          errorMessages.password && "is-invalid"
                         }`}
-                        id="password"
-                        value={password}
-                        onChange={handlePasswordChange}
+                        name="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
                       />
-                      {errors.password && (
+                      {errorMessages.password && (
                         <div className="invalid-feedback">
-                          {errors.password}
+                          {errorMessages.password}
                         </div>
                       )}
                     </div>
-                    {errors.login && <span>{errors.login}</span>}
+                    
                     <div className="d-grid">
                       <center>
                         {" "}
@@ -120,6 +187,7 @@ function UserLogin() {
                         </button>
                       </center>
                     </div>
+                    {/* <p>{postResponse}</p> */}
                   </form>
                 </div>
               </div>

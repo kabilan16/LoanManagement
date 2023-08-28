@@ -4,18 +4,26 @@ import React, { useState, useEffect } from 'react';
 import { Button, Table } from "react-bootstrap";
 import { Modal, Paper } from '@mui/material';
 
+import { Link } from "react-router-dom";
+
+
 function LoanDataEdit() {
   const [employees, setEmployees] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editEmployee, setEditEmployee] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deletedEmployeeId, setDeletedEmployeeId] = useState(null);
-
+  const storedToken = localStorage.getItem('jwtToken');
+  const headers = {
+    'Authorization': `Bearer ${storedToken}`,
+    'Content-Type': 'application/json',
+    // Other headers as needed
+  };
   useEffect(() => {
     
     const delay = 500;
     setTimeout(() => {
-      axios.get('http://localhost:8081/getAllLoanCardDetails')
+      axios.get('http://localhost:8081/getAllLoanCardDetails', {headers})
         .then(response => {
           console.log('Fetched data:', response.data);
           setEmployees(response.data);
@@ -33,7 +41,7 @@ function LoanDataEdit() {
 
   const handleEditSubmit = async (editedEmployee) => {
     try {
-      await axios.put(`http://localhost:8081/updateLoanDetails`, editedEmployee);
+      await axios.put(`http://localhost:8081/updateLoanDetails`, editedEmployee, {headers});
       const updatedEmployees = employees.map(emp =>
         emp.loanId === editedEmployee.loanId ? editedEmployee : emp
       );
@@ -53,7 +61,7 @@ function LoanDataEdit() {
     setIsDeleting(true);
     setDeletedEmployeeId(employeeId);
     try {
-      await axios.delete(`http://localhost:8081/deleteLoanDetails/${employeeId}`);
+      await axios.delete(`http://localhost:8081/deleteLoanDetails/${employeeId}`, {headers});
       setEmployees(employees.filter(emp => emp.loanId !== employeeId));
       // Simulate a refresh effect for 700ms
       setTimeout(() => {
@@ -80,7 +88,7 @@ function LoanDataEdit() {
       event.preventDefault();
   
       try {
-        await axios.put(`http://localhost:8081/updateLoanDetails`, formData);
+        await axios.put(`http://localhost:8081/updateLoanDetails`, formData , {headers});
         onSubmit(formData); // Notify the parent component about the update
         onClose(); // Close the edit form
       } catch (error) {
@@ -91,7 +99,7 @@ function LoanDataEdit() {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <div>
+          {/* <div>
             <label>Loan ID:</label>
             <input
               type="number"
@@ -117,7 +125,7 @@ function LoanDataEdit() {
                         </select>
                       </label>
       
-          </div>
+          </div> */}
           <div>
             <label>Loan Duration in months:</label>
             <input
@@ -194,6 +202,10 @@ function LoanDataEdit() {
         </div>
       </Modal>
       {isDeleting && <div>Deleting...</div>}
+      
+<Link to="/adashboard">
+                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+              </Link>
     </div>
   );
 }

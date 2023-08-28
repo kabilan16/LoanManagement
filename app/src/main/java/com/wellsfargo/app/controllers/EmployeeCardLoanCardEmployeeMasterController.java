@@ -18,7 +18,7 @@ public class EmployeeCardLoanCardEmployeeMasterController {
     @Autowired
     EmployeeCardLoanCardEmployeeMasterService mapService;
 
-    @GetMapping("/getDetails/{id}")
+    @GetMapping("/getAllLoanDetails/{id}")
     public List<EmployeeCardLoanCardEmployeeMasterDTO> getAllDetails(@PathVariable Integer id) {
         List<EmployeeCardLoanCardEmployeeMasterDTO> details = mapService.getAllDetails(id);
         return details;

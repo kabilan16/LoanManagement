@@ -1,13 +1,18 @@
 import "../LoginPage.css";
 import React, { useState } from "react";
 import axios from 'axios';
+import {Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 function LoanCardData() {
-  const [formData, setFormData] = useState({
+  const initialFormData={
     loanId: '',
     loanType: '',
     durationInMonths: ''
-  });
-
+  };
+  const [reqSuccess, setReqSuccess] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
+  const [reqFail, setReqFail] = useState(false);
   const [errorMessages, setErrorMessages] = useState({
     loanId: '',
     loanType: '',
@@ -16,6 +21,8 @@ function LoanCardData() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    setReqSuccess(false);
+    setReqFail(false);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -41,14 +48,22 @@ function LoanCardData() {
       console.log("inside handle submit4");
       return;
     }
-    
+    const storedToken = localStorage.getItem('jwtToken');
+  const headers = {
+    'Authorization': `Bearer ${storedToken}`,
+    'Content-Type': 'application/json',
+    // Other headers as needed
+  };
     try {
       console.log("form data:", formData);
-      const response = await axios.post('http://localhost:8081/addLoanDetails', formData);
+      const response = await axios.post('http://localhost:8081/addLoanDetails', formData, {headers});
       console.log('Response:', response.data);
+      setFormData(initialFormData);
+      setReqSuccess(true);
       // Handle success or do something with the response
     } catch (error) {
       console.error('Error:', error);
+      setReqFail(true);
       // Handle error
     }
   };
@@ -151,12 +166,17 @@ function LoanCardData() {
                         </button>
                       </center>
                     </div>
+                    {reqSuccess && <center><div className="successMsg">Loan Card is added successfully</div></center>}
+                    {reqFail && <center><div className="failMsg">Error occured. Could not add loan card.</div></center>}
                   </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
+<Link to="/adashboard">
+                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+              </Link>
       </div>
     </div>
   );

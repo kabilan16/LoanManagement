@@ -1,16 +1,21 @@
 import "../LoginPage.css";
 import React, { useState } from "react";
 import axios from 'axios';
+import {Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 function AddItems() {
-  const [formData, setFormData] = useState({
+  const initialFormData={
     itemId: '',
     itemDescription: '',
     itemMake: '',
     itemCategory: '',
     issueStatus: '',
     itemCost: '',
-  });
-
+  }
+  const [reqSuccess, setReqSuccess] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
+  const [reqFail, setReqFail] = useState(false);
   const [errorMessages, setErrorMessages] = useState({
     itemId: '',
     itemDescription: '',
@@ -22,6 +27,8 @@ function AddItems() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    setReqSuccess(false);
+    setReqFail(false);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -47,14 +54,22 @@ function AddItems() {
       console.log("inside handle submit4");
       return;
     }
-    
+    const storedToken = localStorage.getItem('jwtToken');
+  const headers = {
+    'Authorization': `Bearer ${storedToken}`,
+    'Content-Type': 'application/json',
+    // Other headers as needed
+  };
     try {
       console.log("form data:", formData);
-      const response = await axios.post('http://localhost:8081/addItems', formData);
+      const response = await axios.post('http://localhost:8081/addItems', formData, {headers});
       console.log('Response:', response.data);
+      setFormData(initialFormData);
+      setReqSuccess(true);
       // Handle success or do something with the response
     } catch (error) {
       console.error('Error:', error);
+      setReqFail(true);
       // Handle error
     }
   };
@@ -198,11 +213,17 @@ function AddItems() {
                         </button>
                       </center>
                     </div>
+                    {reqSuccess && <center><div className="successMsg">Item is added successfully</div></center>}
+                    {reqFail && <center><div className="failMsg">Error occured. Could not add item.</div></center>}    
                   </form>
                 </div>
               </div>
             </div>
           </div>
+          
+<Link to="/adashboard">
+                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+              </Link>
         </div>
       </div>
     </div>

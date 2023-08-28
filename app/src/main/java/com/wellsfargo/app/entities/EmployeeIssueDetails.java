@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 //import javax.persistence.GeneratedValue;
 //import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,10 +28,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class EmployeeIssueDetails {
 	@Id
 	@NotNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "issue_id")
 	private int issueID;
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "employee_id")
 	private EmployeeMaster employeeMaster;
@@ -69,6 +72,8 @@ public class EmployeeIssueDetails {
 		this.issueDate = issueDate;
 		this.returnDate = returnDate;
 	}
+	
+	
 	public int getIssueId(){
 		
 		return issueID;

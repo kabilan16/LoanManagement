@@ -212,7 +212,7 @@ const navigate = useNavigate();
   <p>Department: xyz</p>*/}
         </div>
       </center>
-      <Table bordered hover responsive className="custom-table">
+      <Table bordered hover responsive className="custom-table" style={{borderWidth:"2px"}}>
         <thead>
           <tr>
             <th>Item ID</th>
@@ -221,7 +221,7 @@ const navigate = useNavigate();
             <th>Item Make</th>
             <th>Item Category</th>
             <th>Item Valuation</th>
-            <th>Action</th>
+            <th >Action</th>
           </tr>
         </thead>
         <tbody>
@@ -232,7 +232,7 @@ const navigate = useNavigate();
             <td>Wooden</td>
             <td>Furniture</td>
             <td>5000</td>
-            <td><Button className="button1">Edit</Button> <Button classNmae="button1">Delete</Button></td>
+            <td><Button className="button1" style={{marginBottom:"5px"}}>Edit</Button> <Button classNmae="button1">Delete</Button></td>
           </tr>
           {employees.map(item => (
             <tr>
@@ -264,7 +264,7 @@ const navigate = useNavigate();
       {isDeleting && <div>Deleting...</div>}
       
 <Link to="/adashboard">
-                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+                <center><Button variant="primary"  style={{marginTop:30, backgroundColor:"#f8f9fa", color:"black", padding:"12px"}}>Go to Admin Dashboard</Button></center>
               </Link>
     </div>
   );

@@ -223,7 +223,7 @@ const navigate = useNavigate();
             </div>
           </div>
           <Link to="/adashboard">
-                <center><Button variant="primary">Go to Admin Dashboard</Button></center>
+                <center><Button variant="primary" style={{marginTop:30, backgroundColor:"#f8f9fa", color:"black", padding:"12px"}}>Go to Admin Dashboard</Button></center>
               </Link>
         </div>
       </div>

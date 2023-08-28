@@ -49,7 +49,7 @@ const navigate = useNavigate();
   <div>
   <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button></div>
       <center>
-        <h3 className="pagetitle">Items Purchased</h3>
+        <h3 className="pagetitle" style={{paddingTop:"10px", paddingBottom:"20px"}}>Items Purchased</h3>
       </center>
       
 
@@ -122,7 +122,7 @@ employees.map((loan, index) => {
       </Table>
       {console.log("hmm:",passedProp)}
               <Link to="/udashboard" state={{ passedProp }}>
-                <center><Button variant="primary">Go back to User Dashboard</Button></center>
+                <center><Button variant="primary"style={{marginTop:30, backgroundColor:"#f8f9fa", color:"black", padding:"12px"}} >Go back to User Dashboard</Button></center>
               </Link>
     </div>
   );

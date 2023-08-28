@@ -6,11 +6,20 @@ import { Table } from "react-bootstrap";
 import { useLocation } from 'react-router-dom';
 import {Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 function ViewItems() {
   const [employees, setEmployees] = useState([]);
   const location = useLocation();
   const passedProp = location.state && location.state.passedProp;
   console.log(passedProp)
+  
+const navigate = useNavigate();
+  const handleLogout = (event) => {
+    navigate("/");
+    localStorage.clear();
+    
+  }
   let prevEmployeeId = null;
   let prevDesignation = null;
   let prevDepartment = null;
@@ -36,6 +45,9 @@ function ViewItems() {
   }, ["no response "]);
   return (
     <div>
+
+  <div>
+  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button></div>
       <center>
         <h3 className="pagetitle">Items Purchased</h3>
       </center>

@@ -6,6 +6,7 @@ import { Button, Table } from "react-bootstrap";
 import { Modal, Paper } from '@mui/material';
 
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 
 function ItemMasterEditDetails() {
@@ -20,6 +21,14 @@ function ItemMasterEditDetails() {
     'Content-Type': 'application/json',
     // Other headers as needed
   };
+  
+const navigate = useNavigate();
+  const handleLogout = (event) => {
+    navigate("/");
+    localStorage.clear();
+    
+  }
+  
   useEffect(() => {
     
     const delay = 500;
@@ -42,7 +51,7 @@ function ItemMasterEditDetails() {
 
   const handleEditSubmit = async (editedEmployee) => {
     try {
-      await axios.put(`http://localhost:8081/updateItem`, editedEmployee);
+      await axios.put(`http://localhost:8081/updateItem`, editedEmployee, {headers});
       const updatedEmployees = employees.map(emp =>
         emp.itemId === editedEmployee.itemId ? editedEmployee : emp
       );
@@ -62,7 +71,7 @@ function ItemMasterEditDetails() {
     setIsDeleting(true);
     setDeletedEmployeeId(employeeId);
     try {
-      await axios.delete(`http://localhost:8081/deleteItemDetails/${employeeId}`);
+      await axios.delete(`http://localhost:8081/deleteItemDetails/${employeeId}`, {headers});
       setEmployees(employees.filter(emp => emp.itemId !== employeeId));
       // Simulate a refresh effect for 700ms
       setTimeout(() => {
@@ -89,7 +98,7 @@ function ItemMasterEditDetails() {
       event.preventDefault();
   
       try {
-        await axios.put(`http://localhost:8081/updateItem`, formData);
+        await axios.put(`http://localhost:8081/updateItem`, formData, {headers});
         onSubmit(formData); // Notify the parent component about the update
         onClose(); // Close the edit form
       } catch (error) {
@@ -188,6 +197,8 @@ function ItemMasterEditDetails() {
 
   return (
     <div>
+      <div>
+  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button></div>
       <center>
         <h3 className="pagetitle">Loan Management Application</h3>
       </center>

@@ -6,6 +6,7 @@ import { Button, Table } from "react-bootstrap";
 import { Modal, Paper } from '@mui/material';
 
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function CustomerData() {
 
@@ -14,6 +15,13 @@ function CustomerData() {
   const [editEmployee, setEditEmployee] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deletedEmployeeId, setDeletedEmployeeId] = useState(null);
+  
+const navigate = useNavigate();
+  const handleLogout = (event) => {
+    navigate("/");
+    localStorage.clear();
+    
+  }
   const storedToken = localStorage.getItem('jwtToken');
   const headers = {
     'Authorization': `Bearer ${storedToken}`,
@@ -167,6 +175,9 @@ function CustomerData() {
 
   return (
     <div>
+      <div>
+  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button>
+  </div>
       <center>
         <h3 className="pagetitle">Loan Management Application</h3>
       </center>

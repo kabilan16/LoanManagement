@@ -3,14 +3,24 @@ import "../LoginPage.css";
 import React from "react";
 import { Carousel, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function AdminDashboard() {
+  const navigate = useNavigate();
+  const handleLogout = (event) => {
+    navigate("/");
+    localStorage.clear();
+    
+  }
   return (
     <div>
+      <div>
+      <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button>
+      </div>
       <center>
         <h3 className="pagetitle">Admin Dashboard</h3>
       </center>
-
+      
       <Carousel>
         <Carousel.Item>
           <Card>

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import {Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import { Table } from "react-bootstrap";
 function ViewLoans() {
@@ -14,6 +15,14 @@ function ViewLoans() {
   let prevEmployeeId = null;
   let prevDesignation = null;
   let prevDepartment = null;
+  
+const navigate = useNavigate();
+  const handleLogout = (event) => {
+    navigate("/");
+    localStorage.clear();
+    
+  }
+  
   const storedToken = localStorage.getItem('jwtToken');
   const headers = {
     'Authorization': `Bearer ${storedToken}`,
@@ -36,6 +45,9 @@ function ViewLoans() {
   }, ["no response "]);
   return (
     <div>
+
+  <div>
+  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button></div>
       <center>
         <h3 className="pagetitle">Loan Cards Availed</h3>
       </center>

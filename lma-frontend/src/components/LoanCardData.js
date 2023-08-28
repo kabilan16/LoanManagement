@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import axios from 'axios';
 import {Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function LoanCardData() {
+
   const initialFormData={
     loanId: '',
     loanType: '',
@@ -13,6 +15,14 @@ function LoanCardData() {
   const [reqSuccess, setReqSuccess] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
   const [reqFail, setReqFail] = useState(false);
+  
+const navigate = useNavigate();
+  const handleLogout = (event) => {
+    navigate("/");
+    localStorage.clear();
+    
+  }
+  
   const [errorMessages, setErrorMessages] = useState({
     loanId: '',
     loanType: '',
@@ -71,6 +81,8 @@ function LoanCardData() {
   return (
     <div>
       <div className="adminLogin">
+        <div>
+  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button></div>
         <center>
           <h4 className="pagetitle">Loan Card Master Data Details</h4>
         </center>

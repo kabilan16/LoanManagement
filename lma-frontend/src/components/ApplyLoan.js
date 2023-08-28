@@ -4,7 +4,17 @@ import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
 import {Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 function ApplyLoan() {
+  
+const navigate = useNavigate();
+  const handleLogout = (event) => {
+    navigate("/");
+    localStorage.clear();
+    
+  }
+  
   const location = useLocation();
   const passedProp = location.state && location.state.passedProp;
   console.log(passedProp);
@@ -82,6 +92,7 @@ function ApplyLoan() {
   return (
     <div>
       <div className="adminLogin">
+        <div>  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button></div>
         <center>
           <h4 className="pagetitle">Apply for Loan</h4>
         </center>
@@ -127,7 +138,7 @@ function ApplyLoan() {
                         </select>
                       </label>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25, marginLeft:25}}>
                       <label htmlFor="itemDesc" className="form-label">
                         Item Description
                       </label>
@@ -145,7 +156,7 @@ function ApplyLoan() {
                       />
                       {errorMessages.itemDescription}
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25, marginLeft:25}}>
                       <label>
                         Item Make
                         <select 
@@ -184,7 +195,7 @@ function ApplyLoan() {
                         </select>
                       </label>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25, marginLeft:25}}>
                       <label>
                         Item Value
                         <input

@@ -3,7 +3,17 @@ import React, { useState } from "react";
 import axios from 'axios';
 import {Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 function AddCustomer() {
+  
+const navigate = useNavigate();
+  const handleLogout = (event) => {
+    navigate("/");
+    localStorage.clear();
+    
+  }
+  
   const initialFormData={
     employeeId: '',
     employeeName: '',
@@ -71,11 +81,17 @@ function AddCustomer() {
       setReqFail(true);
       // Handle error
     }
+    
+
+  
   };
 
   return (
     <div>
       <div className="adminLogin">
+      <div>
+  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button>
+  </div>
         <center>
           <h4 className="pagetitle">Customer Master Data Details</h4>
         </center>

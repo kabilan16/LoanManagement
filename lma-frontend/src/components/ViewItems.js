@@ -20,6 +20,9 @@ const navigate = useNavigate();
     localStorage.clear();
     
   }
+  
+const jwt= localStorage.getItem('jwtToken');
+
   let prevEmployeeId = null;
   let prevDesignation = null;
   let prevDepartment = null;
@@ -31,6 +34,10 @@ const navigate = useNavigate();
   };
   useEffect(() => {
     
+  if(jwt===null || jwt=== undefined)
+  {
+    navigate("/");
+  }
     const delay = 500;
     setTimeout(() => {
       axios.get(`http://localhost:8081/getDetails/${passedProp}`, {headers})

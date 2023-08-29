@@ -23,6 +23,9 @@ const navigate = useNavigate();
     
   }
   
+const jwt= localStorage.getItem('jwtToken');
+
+  
   const storedToken = localStorage.getItem('jwtToken');
   const headers = {
     'Authorization': `Bearer ${storedToken}`,
@@ -30,7 +33,12 @@ const navigate = useNavigate();
     // Other headers as needed
   };
   useEffect(() => {
-    
+ 
+  if(jwt===null || jwt=== undefined)
+  {
+    navigate("/");
+  }
+
     const delay = 500;
     setTimeout(() => {
       axios.get(`http://localhost:8081/getAllLoanDetails/${passedProp}`, {headers})

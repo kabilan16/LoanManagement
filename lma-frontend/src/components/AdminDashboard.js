@@ -4,6 +4,7 @@ import React from "react";
 import { Carousel, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 
 function AdminDashboard() {
   const navigate = useNavigate();
@@ -12,6 +13,15 @@ function AdminDashboard() {
     localStorage.clear();
     
   }
+  
+const jwt= localStorage.getItem('jwtToken');
+useEffect(()=>
+{
+  if(jwt===null || jwt=== undefined)
+  {
+    navigate("/");
+  }
+},[]);
   return (
     <div>
       <div>

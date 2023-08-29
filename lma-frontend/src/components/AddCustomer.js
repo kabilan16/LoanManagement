@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 
 function AddCustomer() {
   
@@ -13,6 +14,15 @@ const navigate = useNavigate();
     localStorage.clear();
     
   }
+  
+const jwt= localStorage.getItem('jwtToken');
+useEffect(()=>
+{
+  if(jwt===null || jwt=== undefined)
+  {
+    navigate("/");
+  }
+},[]);
   
   const initialFormData={
     employeeId: '',

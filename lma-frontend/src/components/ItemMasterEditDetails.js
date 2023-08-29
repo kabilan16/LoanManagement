@@ -21,6 +21,9 @@ function ItemMasterEditDetails() {
     'Content-Type': 'application/json',
     // Other headers as needed
   };
+
+const jwt= localStorage.getItem('jwtToken');
+
   
 const navigate = useNavigate();
   const handleLogout = (event) => {
@@ -32,6 +35,12 @@ const navigate = useNavigate();
   useEffect(() => {
     
     const delay = 500;
+ 
+  if(jwt===null || jwt=== undefined)
+  {
+    navigate("/");
+  }
+
     setTimeout(() => {
       axios.get('http://localhost:8081/getAllItem',{headers})
         .then(response => {

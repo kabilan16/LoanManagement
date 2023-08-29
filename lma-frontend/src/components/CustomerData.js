@@ -8,6 +8,7 @@ import { Modal, Paper } from '@mui/material';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
+
 function CustomerData() {
 
   const [employees, setEmployees] = useState([]);
@@ -28,8 +29,15 @@ const navigate = useNavigate();
     'Content-Type': 'application/json',
     // Other headers as needed
   };
+  
+const jwt= localStorage.getItem('jwtToken');
+
   useEffect(() => {
-    
+
+  if(jwt===null || jwt=== undefined)
+  {
+    navigate("/");
+  }
     const delay = 500;
     setTimeout(() => {
       axios.get('http://localhost:8081/getAllEmployee',{headers})

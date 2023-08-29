@@ -79,7 +79,9 @@ public class EmployeeMaster {
 		
 		this.employeeId=employeeId;
 	}
-	
+	public void setEmployeeName(String name){
+		this.employeeName = name;
+	}
 	public String getEmployeeName(){
 		
 		return employeeName;

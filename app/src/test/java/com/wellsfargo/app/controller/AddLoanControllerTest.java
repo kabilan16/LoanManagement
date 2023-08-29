@@ -1,4 +1,4 @@
-package com.wellsfargo.app;
+package com.wellsfargo.app.controller;
 
 import com.wellsfargo.app.controllers.AddLoanController;
 import com.wellsfargo.app.helper.AddLoanHelper;

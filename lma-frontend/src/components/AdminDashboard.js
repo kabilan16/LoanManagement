@@ -33,9 +33,11 @@ useEffect(()=>
       
       <Carousel>
         <Carousel.Item>
-          <Card>
-            <Card.Body>
+          <Card style={{height:'50%', width:'35%'}} >
+            <Card.Body >
+            
               <Card.Title>Customer Data Management</Card.Title>
+              <img src="https://th.bing.com/th/id/OIP.Vup-jpUySBKbg_aOASIN_gHaE7?pid=ImgDet&rs=1" style={{ marginRight:'10px'}}></img>
               <Card.Text>Adding new users/customers details</Card.Text>
               <Link to="/addcustomer">
                 <Button variant="primary">Add users</Button>
@@ -44,10 +46,12 @@ useEffect(()=>
           </Card>
         </Carousel.Item>
         <Carousel.Item>
-          <Card>
+          <Card style={{height:'50%', width:'35%'}}>
             <Card.Body>
+            
               <Card.Title>Customer Data Management</Card.Title>
-              <Card.Text>
+              <img src="https://th.bing.com/th/id/OIP.Vup-jpUySBKbg_aOASIN_gHaE7?pid=ImgDet&rs=1" style={{ marginRight:'10px'}}></img>
+<Card.Text>
                 Editing the existing users/customers details
               </Card.Text>
               <Link to="/customerdata">
@@ -57,10 +61,12 @@ useEffect(()=>
           </Card>
         </Carousel.Item>
         <Carousel.Item>
-          <Card>
+          <Card style={{height:'50%', width:'35%'}}>
             <Card.Body>
+            
               <Card.Title>Loan Card Management</Card.Title>
-              <Card.Text>Add details for new Loan cards</Card.Text>
+              <img src="https://th.bing.com/th/id/OIP.Vup-jpUySBKbg_aOASIN_gHaE7?pid=ImgDet&rs=1" style={{ marginRight:'10px'}}></img>
+<Card.Text>Add details for new Loan cards</Card.Text>
               <Link to="/loancarddata">
                 <Button variant="primary">Add Loan Card </Button>
               </Link>
@@ -68,10 +74,12 @@ useEffect(()=>
           </Card>
         </Carousel.Item>
         <Carousel.Item>
-          <Card>
+          <Card style={{height:'50%', width:'35%'}}>
             <Card.Body>
+            
               <Card.Title>Loan Card Management</Card.Title>
-              <Card.Text>Edit details for existing Loan cards</Card.Text>
+              <img src="https://th.bing.com/th/id/OIP.Vup-jpUySBKbg_aOASIN_gHaE7?pid=ImgDet&rs=1" style={{ marginRight:'10px'}}></img>
+<Card.Text>Edit details for existing Loan cards</Card.Text>
               <Link to="/loandataedit">
                 <Button variant="primary">Edit Loan Card </Button>
               </Link>
@@ -79,10 +87,12 @@ useEffect(()=>
           </Card>
         </Carousel.Item>
         <Carousel.Item>
-          <Card>
+          <Card style={{height:'50%', width:'35%'}}>
             <Card.Body>
+            
               <Card.Title>Items Management</Card.Title>
-              <Card.Text>Add details about an item</Card.Text>
+              <img src="https://th.bing.com/th/id/OIP.Vup-jpUySBKbg_aOASIN_gHaE7?pid=ImgDet&rs=1" style={{ marginRight:'10px'}}></img>
+<Card.Text>Add details about an item</Card.Text>
               <Link to="/additems">
                 <Button variant="primary">Add Item</Button>
               </Link>
@@ -90,10 +100,12 @@ useEffect(()=>
           </Card>
         </Carousel.Item>
         <Carousel.Item>
-          <Card>
+          <Card style={{height:'50%', width:'35%'}}>
             <Card.Body>
+            
               <Card.Title>Items Management</Card.Title>
-              <Card.Text>Edit details of existing items</Card.Text>
+              <img src="https://th.bing.com/th/id/OIP.Vup-jpUySBKbg_aOASIN_gHaE7?pid=ImgDet&rs=1" style={{ marginRight:'10px'}}></img>
+<Card.Text>Edit details of existing items</Card.Text>
               <Link to="/itemmastereditdetails">
                 <Button variant="primary">Edit Items</Button>
               </Link>

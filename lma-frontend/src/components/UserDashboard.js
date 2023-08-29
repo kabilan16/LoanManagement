@@ -36,10 +36,11 @@ useEffect(()=>
         <h3 className="pagetitle" style={{marginTop:25}}>User Dashboard</h3>
       </center>
 
-      <Carousel >
+      <Carousel>
         <Carousel.Item>
-          <Card style={{height:200}}>
+          <Card style={{height:'50%', width:'35%'}}>
             <Card.Body>
+              <img src="https://th.bing.com/th/id/OIP.Vup-jpUySBKbg_aOASIN_gHaE7?pid=ImgDet&rs=1" style={{ marginRight:'10px'}}></img>
               <Card.Text>List of loan cards applied by you</Card.Text>
               <Link to="/viewloans" state={{ passedProp }}>
                 <Button variant="primary">View Loans</Button>
@@ -48,8 +49,9 @@ useEffect(()=>
           </Card>
         </Carousel.Item>
         <Carousel.Item>
-          <Card style={{height:200}}>
+          <Card style={{height:'50%', width:'35%'}}>
             <Card.Body>
+            <img src="https://www.primeclassicdesign.com/images/leather-sectionals-sofas/peach-italian-leather-sectional-corner-couch-small-size-a973.jpg" style={{ marginRight:'10px', height:'270px', width:'95%'}}></img>
               <Card.Text>
                 Select the required products and apply for loan
               </Card.Text>
@@ -60,8 +62,9 @@ useEffect(()=>
           </Card>
         </Carousel.Item>
         <Carousel.Item>
-          <Card style={{height:200}}>
+          <Card style={{height:'50%', width:'35%'}}>
             <Card.Body style={{marginTop:10}}>
+              <img src="https://www.wisebread.com/files/fruganomics/blog-images/hand_giving_and_hand_receiving_money.jpg" style={{ marginRight:'10px', width:'95%'}}></img>
               <Card.Text>List of items purchased by you</Card.Text>
               <Link to="/viewitems" state={{ passedProp }}>
                 <Button variant="primary">View Items</Button>

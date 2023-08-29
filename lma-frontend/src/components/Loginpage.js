@@ -45,7 +45,7 @@
 //       // Check if username and password match predefined values
 //       const predefinedUsers = {
 //         // Add your predefined usernames and passwords here
-//         "kabilan@gmail.com": "kabilan",
+//         "@gmail.com": "kabilan",
 //         "kabilan@wellsfargo.com": "wellsfargo",
 //         "yashaswini@gmail.com":"WellsFargo"
 //       };

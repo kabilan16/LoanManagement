@@ -90,8 +90,8 @@ const navigate = useNavigate();
     <div>
       <div className="adminLogin">
       <div>
-  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button>
-  </div>
+        <Button variant="dark" style={{ position: 'absolute', right: '0', marginRight:'20px'}} onClick={handleLogout}>Logout</Button>
+      </div>
         <center>
           <h4 className="pagetitle">Customer Master Data Details</h4>
         </center>
@@ -182,16 +182,16 @@ const navigate = useNavigate();
                         </select>
                       </label>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginLeft:'15px'}}>
                       <div className="datefield">
-                        <label>Date of Birth</label>
+                        <label>Date of Birth   </label>
                         <input type="date" name="dateOfBirth"
           value={formData.dateOfBirth}
           onChange={handleInputChange} />
           <div className="invalid-feedback">{errorMessages.dateOfBirth}</div>
                       </div>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:'5px', marginLeft:'0px'}}>
                       <div className="datefield">
                         <label>Date of Joining</label>
                         <input type="date" name="dateOfJoining"

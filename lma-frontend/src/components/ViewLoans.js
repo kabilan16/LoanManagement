@@ -47,7 +47,7 @@ const navigate = useNavigate();
     <div>
 
   <div>
-  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button></div>
+  <Button variant="dark" style={{ position: 'absolute', right: '0', marginRight:'15px'}} onClick={handleLogout}>Logout</Button></div>
       <center>
         <h3 className="pagetitle" style={{paddingTop:"10px", paddingBottom:"20px"}}>Loan Cards Availed</h3>
       </center>
@@ -87,7 +87,13 @@ employees.map((loan, index) => {
             );
       })}
 
-        
+<center>
+              <div className="userDetails"> 
+             <p >Employee ID: John doe</p>
+             <p >Designation: Executive</p>
+             <p >Department: HR</p>
+             </div>
+         </center>
         
       <Table bordered hover responsive className="custom-table">
         <thead>

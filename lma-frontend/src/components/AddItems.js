@@ -87,7 +87,7 @@ const navigate = useNavigate();
     <div>
       <div className="adminLogin">
         <div>
-  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button></div>
+  <Button variant="dark" style={{ position: 'absolute', right: '0', marginRight:'15px'}} onClick={handleLogout}>Logout</Button></div>
         <center>
           <h4 className="pagetitle">Item Master Data Details</h4>
         </center>

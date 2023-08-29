@@ -201,7 +201,7 @@ const navigate = useNavigate();
             <th>Gender</th>
             <th>Date_of_birth</th>
             <th>Date_of_Joining</th>
-            <th>Changes</th>
+            <th style={{minWidth:'200px'}}>Changes</th>
           </tr>
         </thead>
         <tbody>
@@ -213,7 +213,7 @@ const navigate = useNavigate();
             <td>Male</td>
             <td>1973-01-01</td>
             <td>2000-01-01</td>
-            <td><Button className="button1" style={{marginBottom:"5px"}}>Edit</Button> <Button classNmae="button1">Delete</Button></td>
+            <td><Button className="button1" >Edit</Button> <Button classNmae="button1">Delete</Button></td>
           </tr>
           
           {/* Add more rows as needed */}

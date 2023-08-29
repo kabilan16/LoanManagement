@@ -198,7 +198,7 @@ const navigate = useNavigate();
   return (
     <div>
       <div>
-  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button></div>
+  <Button variant="dark" style={{ position: 'absolute', right: '0', marginRight:'15px'}} onClick={handleLogout}>Logout</Button></div>
       <center>
         <h3 className="pagetitle">Loan Management Application</h3>
       </center>
@@ -221,7 +221,7 @@ const navigate = useNavigate();
             <th>Item Make</th>
             <th>Item Category</th>
             <th>Item Valuation</th>
-            <th >Action</th>
+            <th style={{minWidth:'200px'}}>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -232,7 +232,7 @@ const navigate = useNavigate();
             <td>Wooden</td>
             <td>Furniture</td>
             <td>5000</td>
-            <td><Button className="button1" style={{marginBottom:"5px"}}>Edit</Button> <Button classNmae="button1">Delete</Button></td>
+            <td><Button className="button1" >Edit</Button> <Button classNmae="button1">Delete</Button></td>
           </tr>
           {employees.map(item => (
             <tr>

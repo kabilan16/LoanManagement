@@ -21,7 +21,7 @@ const navigate = useNavigate();
     <div>
    
   <div>
-  <Button variant="dark" style={{ position: 'absolute', right: '0'}} onClick={handleLogout}>Logout</Button></div>
+  <Button variant="dark" style={{ position: 'absolute', right: '0', marginRight:'15px'}} onClick={handleLogout}>Logout</Button></div>
       <center>
         <h3 className="pagetitle" style={{marginTop:25}}>User Dashboard</h3>
       </center>

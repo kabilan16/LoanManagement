@@ -1,91 +1,175 @@
 import "../LoginPage.css";
 import React, { useState } from "react";
-function AddCustomer() {
-  const [username, setUsername] = useState("");
-  const [errors, setErrors] = useState({});
+import axios from 'axios';
+import {Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+function AddCustomer() {
+  
+const navigate = useNavigate();
+  const handleLogout = (event) => {
+    navigate("/");
+    localStorage.clear();
+    
+  }
+  
+const jwt= localStorage.getItem('jwtToken');
+useEffect(()=>
+{
+  if(jwt===null || jwt=== undefined)
+  {
+    navigate("/");
+  }
+},[]);
+  
+  const initialFormData={
+    employeeId: '',
+    employeeName: '',
+    designation: '',
+    department: '',
+    dateOfBirth: '',
+    dateOfJoining: '',
+  };
+  const [reqSuccess, setReqSuccess] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
+  const [reqFail, setReqFail] = useState(false);
+  const [errorMessages, setErrorMessages] = useState({
+    employeeId: '',
+    employeeName: '',
+    designation: '',
+    department: '',
+    dateOfBirth: '',
+    dateOfJoining: '',
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setReqFail(false);
+    setReqSuccess(false);
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log("inside handle submit1");
 
-    const validationErrors = {};
-
-    if (username.trim() === "") {
-      validationErrors.username = "Username is required";
+    // Validate form fields
+    const newErrorMessages = {};
+    for (const field in formData) {
+      if (formData[field] === '') {
+        newErrorMessages[field] = `${field} is required`;
+      }
     }
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-    } else {
-      console.log("Login successful");
+    console.log("inside handle submit2");
+    setErrorMessages(newErrorMessages);
+    console.log("inside handle submit3");
+    // If any errors, prevent the POST request
+    if (Object.keys(newErrorMessages).length > 0) {
+      console.log("inside handle submit4");
+      return;
     }
+    const storedToken = localStorage.getItem('jwtToken');
+  const headers = {
+    'Authorization': `Bearer ${storedToken}`,
+    'Content-Type': 'application/json',
+    // Other headers as needed
+  };
+    try {
+      console.log("form data:", formData);
+      const response = await axios.post('http://localhost:8081/addEmployee', formData, {headers});
+      console.log('Response:', response.data);
+      setFormData(initialFormData);
+      setReqSuccess(true);
+      // Handle success or do something with the response
+    } catch (error) {
+      console.error('Error:', error);
+      setReqFail(true);
+      // Handle error
+    }
+    
+
+  
   };
 
   return (
     <div>
       <div className="adminLogin">
+      <div>
+        <Button variant="dark" style={{ position: 'absolute', right: '0', marginRight:'20px'}} onClick={handleLogout}>Logout</Button>
+      </div>
         <center>
           <h4 className="pagetitle">Customer Master Data Details</h4>
         </center>
         <div className="container mt-5">
           <div className="row justify-content-center">
-            <div className="col-md-6">
+            <div className="col-md-5">
               <div
                 className="card shadow p-4"
                 style={{ backgroundColor: "#f8f9fa", borderRadius: "25px" }}
               >
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25}}>
                       <label htmlFor="username" className="form-label">
                         Employee ID
                       </label>
                       <input
-                        type="text"
+                        
                         className={`form-control form-control-sm ${
-                          errors.username && "is-invalid"
+                          errorMessages.employeeId && "is-invalid"
                         }`}
-                        id="username"
-                        value={username}
-                        onChange={handleUsernameChange}
+                        type="number"
+                        name="employeeId"
+                        value={formData.employeeId}
+                        onChange={handleInputChange}
                         style={{ border: "1px solid black" }}
                       />
-                      {errors.username && (
+                      {errorMessages.employeeId && (
                         <div className="invalid-feedback">
-                          {errors.username}
+                          {errorMessages.employeeId}
                         </div>
                       )}
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:25}}>
                       <label htmlFor="itemDesc" className="form-label">
                         Employee Name
                       </label>
                       <input
                         type="text"
                         className={`form-control form-control-sm ${
-                          errors.username && "is-invalid"
+                          errorMessages.employeeName && "is-invalid"
                         }`}
-                        id="empName"
+                        name="employeeName"
+          value={formData.employeeName}
+          onChange={handleInputChange}
                         style={{ border: "1px solid black" }}
                         // value={username}
                         // onChange={handleUsernameChange}
                       />
-                      {/* {errors.username && <div className="invalid-feedback">{errors.username}</div>} */}
+                      {errorMessages.employeeName}
                     </div>
                     <div className="mb-3">
                       <label>
                         Department
-                        <select>
-                          <option value="finance">Finance</option>
-                          <option value="hr">HR</option>
-                          <option value="sales">Sales</option>
+                        <select 
+                        name="department"
+                        value={formData.department}
+          onChange={handleInputChange}
+          
+          >
+            <option value="" selected disabled hidden>Select Dept</option>
+                          <option value="Finance">Finance</option>
+                          <option value="HR">HR</option>
+                          <option value="Sales">Sales</option>
                         </select>
                       </label>
                     </div>
-                    <div className="mb-3">
+                    {/* <div className="mb-3">
                       <label>
                         Gender
                         <select>
@@ -93,11 +177,14 @@ function AddCustomer() {
                           <option value="female">Female</option>
                         </select>
                       </label>
-                    </div>
+                    </div> */}
                     <div className="mb-3">
                       <label>
                         Designation
-                        <select>
+                        <select  name="designation"
+          value={formData.designation}
+          onChange={handleInputChange}>
+            <option value="" selected disabled hidden>Select Desg</option>
                           <option value="manager">Manager</option>
                           <option value="executive">Executive</option>
                           <option value="srexecutive">Sr. Executive</option>
@@ -105,16 +192,22 @@ function AddCustomer() {
                         </select>
                       </label>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginLeft:'15px'}}>
                       <div className="datefield">
-                        <label>Date of Birth</label>
-                        <input type="date" />
+                        <label>Date of Birth   </label>
+                        <input type="date" name="dateOfBirth"
+          value={formData.dateOfBirth}
+          onChange={handleInputChange} />
+          <div className="invalid-feedback">{errorMessages.dateOfBirth}</div>
                       </div>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3" style={{marginRight:'5px', marginLeft:'0px'}}>
                       <div className="datefield">
                         <label>Date of Joining</label>
-                        <input type="date" />
+                        <input type="date" name="dateOfJoining"
+          value={formData.dateOfJoining}
+          onChange={handleInputChange}/>
+          <div className="invalid-feedback">{errorMessages.dateOfJoining}</div>
                       </div>
                     </div>
                     <div className="d-grid">
@@ -126,14 +219,22 @@ function AddCustomer() {
                           style={{ maxWidth: "200px" }}
                         >
                           Add Data
+                          
                         </button>
                       </center>
                     </div>
+                    {reqSuccess && <center><div className="successMsg">User is added successfully</div></center>}
+                    {reqFail && <center><div className="failMsg">Error occured. Could not add user.</div></center>}
                   </form>
+                  
                 </div>
+                
               </div>
             </div>
           </div>
+          <Link to="/adashboard">
+                <center><Button variant="primary" style={{marginTop:30, backgroundColor:"#f8f9fa", color:"black", padding:"12px"}}>Go to Admin Dashboard</Button></center>
+              </Link>
         </div>
       </div>
     </div>

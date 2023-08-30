@@ -10,6 +10,26 @@
 body{
     background-color:#4169e0 ;
 }
+
+.carousel .card {
+    width: 300px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the cards */
+    margin-top: 150px;
+    margin-bottom: 55px;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+  }
+
+.card-title
+{
+    background-color:  #0d6efd;
+    border-radius: 7px;
+    padding: 4px;
+    color: white;
+    font-size: 35px;
+}
 .lma
 {
     background-color:#5274da;
@@ -52,15 +72,17 @@ input
 
 .homeleft
 {
-    width: 50%;
+  width: 50%;
+  float:left;
+    /*width: 50%;
     float: left;
     display: flex;
     align-items: center;
     color: white;
-    font-size: 60px;
+    font-size: 60px;*/
     /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
-    font-family: 'Raleway', sans-serif;
-    margin-top: 100px;
+    /*font-family: 'Raleway', sans-serif;
+    margin-top: 100px;*/
     
 }
 
@@ -69,16 +91,38 @@ input
     font-family: 'Raleway', sans-serif;
     color: white;
     font-size: 40px;
-    margin-top: 5px;
+    margin-top: 15px;
+}
+
+.successMsg{
+  font-family: 'Raleway', sans-serif;
+  color: green;
+  align-items: center;
+  margin-top: 6px;
+}
+.failMsg{
+  font-family: 'Raleway', sans-serif;
+  color: red;
+  align-items: center;
+  margin-top: 6px;
 }
 
 .homeright
 {
-    width:50%;
-    float:right;
+  width: 50%;
+  float: right;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 60px;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+  font-family: 'Raleway', sans-serif;
+  margin-top: 100px;
+    /*width:50%;
+    float:right;*/
     
 }
-.homeright p
+/*.homeright p
 {
     padding: 60px;
     font-family: 'Anton', sans-serif;
@@ -86,7 +130,7 @@ input
     font-size: 40px;
     margin-top: 40px;
     
-}
+}*/
 
 
 .card {
@@ -135,3 +179,90 @@ input
     align-items: center;
   }
   
+  .custom-table {
+    font-size: 14px;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    border: 1px solid #d3d3d3;
+    padding: 8px 12px;
+    text-align: center;
+  }
+  
+  .custom-table thead {
+    background-color: #f8f9fa;
+  }
+  
+  .custom-table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  
+  .custom-table tbody tr:hover {
+    background-color: #e2e6ea;
+  }
+
+  .userDetails
+  {
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-size: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: #e42828;
+    border-radius: 10px;
+    width: 90%
+
+  }
+
+  .userDetails p
+  {
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .userDetails p:hover{
+    background-color: #c32222;
+
+  }
+
+  .button1 button{
+    text-decoration: none;
+    text-size:5px;
+    padding:2px;
+  }
+
+
+/* Center the modal */
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Style the modal paper (rectangular box) */
+.modal-paper {
+  padding: 20px;
+  width: 400px;
+  max-height: 80vh; /* Set max height for the Paper component */
+  overflow-y: auto; /* Enable vertical scrolling within Paper */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+/* Style the modal content for scrolling */
+.modal-content {
+  max-height: 300px; /* Adjust the max height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}

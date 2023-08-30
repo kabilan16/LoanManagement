@@ -5,7 +5,21 @@ function Home() {
     <div>
       <div className="adminLogin">
         <div className="homeleft">
-          <Typewriter
+          {/*<Typewriter
+            options={{
+              autoStart: true,
+              loop: true,
+              delay: 50,
+              strings: [
+                "WELCOME TO LOAN MANAGEMENT APPLICATION",
+                "Head over to the navbar to Login as User or Admin",
+              ],
+            }}
+          />*/}
+          <div className="container"><img /*src="https://homesandloansblog.files.wordpress.com/2021/07/loan-against-property-1-1.jpg"*/ src="https://static.xtrading.com/wp-content/uploads/2022/2022/09/Amazon-Business-Intelligence-Engineer-Salaries1-2-2048x1364.jpg" width={'100%'} height={'105%'}></img></div>
+        </div>
+        <div className="homeright">
+        <Typewriter
             options={{
               autoStart: true,
               loop: true,
@@ -16,18 +30,16 @@ function Home() {
               ],
             }}
           />
-        </div>
-        <div className="homeright">
           {/* <img
             src={
               "https://savvyhrms.com/wp-content/uploads/2020/11/loan-management-768x576.jpg"
             }
           /> */}
-          <p>
+          {/*<p>
             A web application that provides a facility for GIS Global employees
             to purchase items from GIS Global Mart and facilitates flexible
             loans to purchase items.
-          </p>
+        </p>*/}
         </div>
       </div>
     </div>

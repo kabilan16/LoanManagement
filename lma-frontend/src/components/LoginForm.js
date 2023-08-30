@@ -37,12 +37,12 @@ const LoginForm = () => {
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-md-5">
           <div className="card shadow p-4" style={{ backgroundColor: '#f8f9fa' }}>
             <div className="card-body">
               <h2 className="card-title text-center mb-4">Login</h2>
               <form onSubmit={handleSubmit}>
-                <div className="mb-3">
+                <div className="mb-3" style={{marginRight:25}}>
                   <label htmlFor="username" className="form-label">
                     Username
                   </label>
@@ -55,7 +55,7 @@ const LoginForm = () => {
                   />
                   {errors.username && <div className="invalid-feedback">{errors.username}</div>}
                 </div>
-                <div className="mb-3">
+                <div className="mb-3" style={{marginRight:25}}>
                   <label htmlFor="password" className="form-label">
                     Password
                   </label>

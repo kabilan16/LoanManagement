@@ -14,7 +14,7 @@ body{
 .carousel .card {
     width: 300px; /* Adjust the width as needed */
     margin: 0 auto; /* Center the cards */
-    margin-top: 150px;
+    margin-top: 70px;
     margin-bottom: 55px;
     font-size: 25px;
     font-weight: bold;
@@ -74,6 +74,7 @@ input
 {
   width: 50%;
   float:left;
+
     /*width: 50%;
     float: left;
     display: flex;

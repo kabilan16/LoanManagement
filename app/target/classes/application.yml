@@ -6,9 +6,9 @@ spring:
   application:
     name: app
   datasource:
-    url: jdbc:mariadb://localhost:3306/random1
+    url: jdbc:mariadb://localhost:3306/random2
     username: root
-    password: root
+    password: password1
   jpa:
     hibernate:
       ddl-auto: update

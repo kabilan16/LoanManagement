@@ -95,13 +95,6 @@ employees.map((loan, index) => {
             );
       })}
 
-<center>
-              <div className="userDetails"> 
-             <p >Employee ID: John doe</p>
-             <p >Designation: Executive</p>
-             <p >Department: HR</p>
-             </div>
-         </center>
         
       <Table bordered hover responsive className="custom-table">
         <thead>
@@ -113,18 +106,13 @@ employees.map((loan, index) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>30</td>
-            <td>Dummy data</td>
-            <td>5</td>
-            <td>12/01/2023</td>
-          </tr>
+
           {employees.map(emp => (
             <tr>
           <td key={emp.loanId}>{emp.loanId}</td>
           <td key={emp.loanId}>{emp.loanType}</td>
           <td key={emp.loanId}>{emp.durationInMonths}</td>
-          <td key={emp.loanId}>{emp.cardIssueDate}</td>
+          <td key={emp.loanId}>{emp.cardIssueDate.split('T')[0]}</td>
           
           </tr>
         ))}

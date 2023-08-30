@@ -106,13 +106,7 @@ employees.map((loan, index) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Dummy data</td>
-            <td>Dummy data</td>
-            <td>Dummy data</td>
-            <td>5000</td>
-          </tr>
+          
 
           {employees.map(emp => (
             <tr>

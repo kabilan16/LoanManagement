@@ -213,17 +213,6 @@ const jwt= localStorage.getItem('jwtToken');
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>01</td>
-            <td>Ram</td>
-            <td>Manager</td>
-            <td>Finance</td>
-            <td>Male</td>
-            <td>1973-01-01</td>
-            <td>2000-01-01</td>
-            <td><Button className="button1" >Edit</Button> <Button classNmae="button1">Delete</Button></td>
-          </tr>
-          
           {/* Add more rows as needed */}
           
           {employees.map(item => (
@@ -233,8 +222,8 @@ const jwt= localStorage.getItem('jwtToken');
           <td key={item.employeeId}>{item.designation}</td>
           <td key={item.employeeId}>{item.department}</td>
           <td key={item.employeeId}>Male</td>
-          <td key={item.employeeId}>{item.dateOfBirth}</td>
-          <td key={item.employeeId}>{item.dateOfJoining}</td>
+          <td key={item.employeeId}>{item.dateOfBirth.split('T')[0]}</td>
+          <td key={item.employeeId}>{item.dateOfJoining.split('T')[0]}</td>
           <td><Button className="button1"  onClick={() => handleEdit(item)}>Edit</Button> 
           <Button className="button1" onClick={() => handleDelete(item.employeeId)}>Delete</Button></td>
           </tr>

@@ -189,12 +189,7 @@ const jwt= localStorage.getItem('jwtToken');
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>L01</td>
-            <td>Furniture</td>
-            <td>5</td>
-            <td><Button className="button1">Edit</Button> <Button classNmae="button1">Delete</Button></td>
-          </tr>
+          
           
           {employees.map(item => (
             <tr>

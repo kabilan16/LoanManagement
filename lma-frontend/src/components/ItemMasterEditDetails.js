@@ -234,15 +234,7 @@ const navigate = useNavigate();
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>101</td>
-            <td>Tea Table</td>
-            <td>Y</td>
-            <td>Wooden</td>
-            <td>Furniture</td>
-            <td>5000</td>
-            <td><Button className="button1" >Edit</Button> <Button classNmae="button1">Delete</Button></td>
-          </tr>
+          
           {employees.map(item => (
             <tr>
           <td key={item.itemId}>{item.itemId}</td>

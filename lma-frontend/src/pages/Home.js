@@ -16,8 +16,9 @@ function Home() {
               ],
             }}
           />*/}
-          <div className="container"><img /*src="https://homesandloansblog.files.wordpress.com/2021/07/loan-against-property-1-1.jpg"*/ src="https://static.xtrading.com/wp-content/uploads/2022/2022/09/Amazon-Business-Intelligence-Engineer-Salaries1-2-2048x1364.jpg" width={'100%'} height={'105%'}></img></div>
+          <div className="fullscreen-container"><img /*src="https://homesandloansblog.files.wordpress.com/2021/07/loan-against-property-1-1.jpg"*/ src="https://static.xtrading.com/wp-content/uploads/2022/2022/09/Amazon-Business-Intelligence-Engineer-Salaries1-2-2048x1364.jpg" width={'95%'} height={'560px'} style={{backgroundSize: 'cover'}}></img></div>
         </div>
+        
         <div className="homeright">
         <Typewriter
             options={{
